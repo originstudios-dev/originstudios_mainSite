@@ -1,6 +1,6 @@
 export function OrbFallback() {
   return (
-    <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px]">
+    <div className="relative w-full h-full">
       {/* Outer glow */}
       <div
         className="absolute inset-0 rounded-full animate-pulse"

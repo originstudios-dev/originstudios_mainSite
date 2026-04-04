@@ -1,34 +1,157 @@
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import { gsap, ScrollTrigger } from "@/lib/registry";
 
 const steps = [
-  { num: "01", title: "Extract", description: "We define your brand's \"Original\" value proposition." },
-  { num: "02", title: "Architect", description: "We build the 3D assets and high-performance structural code." },
-  { num: "03", title: "Synthesize", description: "We layer in the semantic schema for AI retrieval and citation." },
-  { num: "04", title: "Optimize", description: "We run rigorous conversion stress tests before the \"Source\" goes live." },
+  {
+    num: "01",
+    title: "Discovery",
+    detail: "Weeks 1–2",
+    description: "Strategy, audit, positioning, wireframes",
+  },
+  {
+    num: "02",
+    title: "Design",
+    detail: "Weeks 3–4",
+    description: "Figma, motion concepts, design system",
+  },
+  {
+    num: "03",
+    title: "Build",
+    detail: "Weeks 5–6",
+    description: "Next.js, animations, CMS, marketing stack",
+  },
+  {
+    num: "04",
+    title: "Schema & GEO",
+    detail: "Week 7",
+    description: "JSON-LD, entity mapping, AEO pages",
+  },
+  {
+    num: "05",
+    title: "Launch",
+    detail: "Week 8",
+    description: "95+ Lighthouse, QA, campaign-ready",
+  },
 ];
 
 export function Methodology() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const rowsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      rowsRef.current.forEach((row) => {
+        if (!row) return;
+        gsap.fromTo(
+          row,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: row,
+              start: "top 90%",
+              end: "top 70%",
+              scrub: 1,
+            },
+          }
+        );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="method" className="py-32 md:py-48 px-8 md:px-16 max-w-7xl mx-auto">
-      <ScrollReveal>
-        <span className="font-satoshi text-xs text-label tracking-[0.2em] uppercase">06 — The Methodology</span>
-      </ScrollReveal>
-      <ScrollReveal delay={0.1} className="mt-6">
-        <h2 className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight">The Process.</h2>
-      </ScrollReveal>
-      <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        {steps.map((step, i) => (
-          <ScrollReveal key={step.num} delay={i * 0.1}>
-            <div className="relative">
-              <span className="font-satoshi text-3xl font-light text-primary">{step.num}</span>
-              <h3 className="font-satoshi text-base font-semibold text-primary mt-3">{step.title}</h3>
-              <p className="font-satoshi text-sm text-body mt-2 leading-relaxed">{step.description}</p>
-              {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-4 -right-4 w-8 h-px bg-white/10" />
-              )}
+    <section
+      id="method"
+      ref={sectionRef}
+      className="py-32 md:py-48 px-8 md:px-16 max-w-7xl mx-auto"
+    >
+      <span className="font-satoshi text-xs text-label tracking-[0.2em] uppercase">
+        How we work
+      </span>
+
+      <h2 className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight mt-6">
+        Five Sprints. Eight Weeks. One Launch.
+      </h2>
+
+      <div className="mt-16">
+        {steps.map((step, i) => {
+          const isHovered = hoveredIndex === i;
+
+          return (
+            <div
+              key={step.num}
+              ref={(el) => {
+                rowsRef.current[i] = el;
+              }}
+              className="relative overflow-hidden border-b border-white/[0.06]"
+              data-cursor="expand"
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              {/* White sweep background */}
+              <div
+                className="absolute inset-0 bg-white origin-left transition-transform duration-300 ease-out"
+                style={{ transform: isHovered ? "scaleX(1)" : "scaleX(0)" }}
+              />
+
+              <div
+                className="relative z-10 flex items-center py-6 md:py-8 transition-all duration-300"
+                style={{ paddingLeft: isHovered ? "1rem" : "0" }}
+              >
+                <span
+                  className="font-satoshi text-2xl md:text-3xl font-light w-20 transition-colors duration-300"
+                  style={{ color: isHovered ? "#0a0a0a" : "#ffffff" }}
+                >
+                  {step.num}
+                </span>
+
+                {/* Title crossfades to description on hover */}
+                <span className="flex-1 relative">
+                  <span
+                    className="font-clash text-xl md:text-3xl font-bold uppercase tracking-tight transition-all duration-300 inline-block"
+                    style={{
+                      opacity: isHovered ? 0 : 1,
+                      transform: isHovered ? "translateY(-10px)" : "translateY(0)",
+                      color: "#ffffff",
+                    }}
+                  >
+                    {step.title}
+                  </span>
+                  <span
+                    className="absolute inset-0 font-satoshi text-sm md:text-base flex items-center transition-all duration-300"
+                    style={{
+                      opacity: isHovered ? 1 : 0,
+                      transform: isHovered ? "translateY(0)" : "translateY(10px)",
+                      color: "#0a0a0a",
+                    }}
+                  >
+                    {step.description}
+                  </span>
+                </span>
+
+                <span
+                  className="hidden md:block font-satoshi text-xs tracking-wide text-right max-w-[200px] transition-all duration-300"
+                  style={{
+                    opacity: isHovered ? 1 : 0,
+                    color: "#0a0a0a",
+                    transform: isHovered ? "translateX(0)" : "translateX(20px)",
+                  }}
+                >
+                  {step.detail}
+                </span>
+              </div>
             </div>
-          </ScrollReveal>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

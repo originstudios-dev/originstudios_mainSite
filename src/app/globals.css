@@ -26,12 +26,6 @@
   --font-satoshi: "Satoshi", sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   background-color: var(--color-bg);
   color: var(--color-primary);
@@ -47,4 +41,34 @@ body {
 ::selection {
   background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+}
+
+@keyframes navBreathe {
+  0% { transform: scale(1); }
+  6% { transform: scale(1.025); }
+  10% { transform: scale(1); }
+  14% { transform: scale(1.018); }
+  18% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.04; }
+  50% { opacity: 0.08; }
 }

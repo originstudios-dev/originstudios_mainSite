@@ -10,7 +10,7 @@ interface SceneProps {
 
 export function Scene({ opacity = 1, className = "" }: SceneProps) {
   return (
-    <div className={`w-full h-full ${className}`}>
+    <div className={`absolute inset-0 ${className}`}>
       <Canvas
         camera={{ position: [0, 0, 4], fov: 50 }}
         gl={{
