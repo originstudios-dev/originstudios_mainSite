@@ -4,17 +4,13 @@ import { useEffect, useRef } from "react";
 
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
   const expanded = useRef(false);
   const mx = useRef(-100);
   const my = useRef(-100);
-  const gx = useRef(-100);
-  const gy = useRef(-100);
 
   useEffect(() => {
     const dot = dotRef.current;
-    const glow = glowRef.current;
-    if (!dot || !glow) return;
+    if (!dot) return;
 
     const onMove = (e: MouseEvent) => {
       mx.current = e.clientX;
@@ -47,14 +43,7 @@ export function CustomCursor() {
 
     let raf: number;
     const tick = () => {
-      // Dot follows instantly via translate (no layout)
       dot.style.transform = `translate3d(${mx.current - 5}px, ${my.current - 5}px, 0)`;
-
-      // Glow lags behind
-      gx.current += (mx.current - gx.current) * 0.1;
-      gy.current += (my.current - gy.current) * 0.1;
-      glow.style.transform = `translate3d(${gx.current - 150}px, ${gy.current - 150}px, 0)`;
-
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -68,28 +57,17 @@ export function CustomCursor() {
   }, []);
 
   return (
-    <>
-      <div
-        ref={dotRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full hidden md:block"
-        style={{
-          width: 10,
-          height: 10,
-          backgroundColor: "#fff",
-          opacity: 0.9,
-          willChange: "transform",
-          transition: "width 200ms, height 200ms, opacity 200ms, mix-blend-mode 200ms",
-        }}
-      />
-      <div
-        ref={glowRef}
-        className="fixed top-0 left-0 pointer-events-none z-[1] w-[300px] h-[300px] rounded-full hidden md:block"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.008) 40%, transparent 70%)",
-          willChange: "transform",
-        }}
-      />
-    </>
+    <div
+      ref={dotRef}
+      className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full hidden md:block"
+      style={{
+        width: 10,
+        height: 10,
+        backgroundColor: "#fff",
+        opacity: 0.9,
+        willChange: "transform",
+        transition: "width 200ms, height 200ms, opacity 200ms, mix-blend-mode 200ms",
+      }}
+    />
   );
 }

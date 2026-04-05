@@ -72,3 +72,55 @@ body {
   0%, 100% { opacity: 0.04; }
   50% { opacity: 0.08; }
 }
+
+/* ── Premium Animation Keyframes & Effects ── */
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes gradientSpin {
+  from { --gradient-angle: 0deg; }
+  to { --gradient-angle: 360deg; }
+}
+
+.text-glow {
+  text-shadow: 0 0 40px rgba(255,255,255,0.1), 0 0 80px rgba(255,255,255,0.05);
+}
+
+@keyframes drawLine {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.gradient-border {
+  background: conic-gradient(from var(--gradient-angle), transparent 25%, var(--border-color, rgba(255,255,255,0.1)) 50%, transparent 75%);
+}
+
+.gradient-border:hover {
+  animation: gradientSpin 3s linear infinite;
+}
+
+@keyframes strikethrough {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.hover-underline {
+  position: relative;
+}
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: white;
+  transition: width 0.3s ease;
+}
+.hover-underline:hover::after {
+  width: 100%;
+}

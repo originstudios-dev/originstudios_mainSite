@@ -1,20 +1,84 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Navbar } from "@/components/ui/Navbar";
 import { Loader } from "@/components/ui/Loader";
 import { Footer } from "@/components/ui/Footer";
-import { Grain } from "@/components/ui/Grain";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Particles } from "@/components/ui/Particles";
 import { Hero } from "@/components/sections/Hero";
-import { Logic } from "@/components/sections/Logic";
 import { Craft } from "@/components/sections/Craft";
 import { Comparison } from "@/components/sections/Comparison";
 import { Originals } from "@/components/sections/Originals";
 import { Methodology } from "@/components/sections/Methodology";
 import { FinalCall } from "@/components/sections/FinalCall";
 import { useLenis } from "@/lib/hooks/useLenis";
+import { BigLogo } from "@/components/ui/BigLogo";
+import { gsap, ScrollTrigger } from "@/lib/registry";
+
+function SectionDivider() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const trigger = ScrollTrigger.create({
+      trigger: ref.current,
+      start: "top 90%",
+      once: true,
+      onEnter: () => {
+        gsap.fromTo(
+          ref.current,
+          { scaleX: 0 },
+          { scaleX: 1, duration: 1.2, ease: "power3.out" }
+        );
+      },
+    });
+    return () => trigger.kill();
+  }, []);
+
+  return (
+    <div className="max-w-7xl mx-auto px-8 md:px-16">
+      <div
+        ref={ref}
+        className="h-px origin-left"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 20%, rgba(255,255,255,0.08) 80%, transparent 100%)",
+          transform: "scaleX(0)",
+        }}
+      />
+    </div>
+  );
+}
+
+function RevealSection({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    gsap.set(el, { opacity: 0, y: 60 });
+
+    const trigger = ScrollTrigger.create({
+      trigger: el,
+      start: "top 85%",
+      once: true,
+      onEnter: () => {
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+        });
+      },
+    });
+
+    return () => trigger.kill();
+  }, []);
+
+  return <div ref={ref}>{children}</div>;
+}
 
 export default function Home() {
   const [loaded, setLoaded] = useState(false);
@@ -27,56 +91,46 @@ export default function Home() {
       {loaded && (
         <>
           {/* Ambient layers */}
-          <Grain />
           <CustomCursor />
           <Particles />
 
           <Navbar />
-          <main className="bg-bg text-primary">
+          <main className="text-primary">
             <Hero />
-            <Logic />
-            <div className="relative">
-              <StickySection z={10}>
-                <Craft />
-              </StickySection>
-              <StickySection z={20}>
-                <Comparison />
-              </StickySection>
-              <StickySection z={30}>
-                <Originals />
-              </StickySection>
-              <StickySection z={40}>
-                <Methodology />
-              </StickySection>
-              <StickySection z={50} last>
-                <FinalCall />
-              </StickySection>
+
+            {/* Solid bg from here */}
+            <div className="relative z-10 bg-bg">
+
+            <SectionDivider />
+            <RevealSection>
+              <Craft />
+            </RevealSection>
+
+            <SectionDivider />
+            <RevealSection>
+              <Comparison />
+            </RevealSection>
+
+            <SectionDivider />
+            <RevealSection>
+              <Originals />
+            </RevealSection>
+
+            <SectionDivider />
+            <RevealSection>
+              <Methodology />
+            </RevealSection>
+
+            <SectionDivider />
+            <RevealSection>
+              <FinalCall />
+            </RevealSection>
             </div>
           </main>
           <Footer />
+          <BigLogo />
         </>
       )}
     </>
-  );
-}
-
-function StickySection({
-  children,
-  z,
-  last = false,
-}: {
-  children: React.ReactNode;
-  z: number;
-  last?: boolean;
-}) {
-  return (
-    <div
-      className={`sticky top-0 bg-bg border-t border-white/[0.04] ${
-        last ? "" : "shadow-[0_-20px_60px_rgba(0,0,0,0.8)]"
-      }`}
-      style={{ zIndex: z }}
-    >
-      {children}
-    </div>
   );
 }
