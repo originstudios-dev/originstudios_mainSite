@@ -201,8 +201,8 @@ export function StickerRain() {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 overflow-hidden pointer-events-none"
-      style={{ zIndex: 0 }}
+      className="absolute top-0 bottom-0 overflow-hidden pointer-events-none"
+      style={{ zIndex: 0, left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw", width: "100vw" }}
       aria-hidden="true"
       role="presentation"
     >

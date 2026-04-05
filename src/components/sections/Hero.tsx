@@ -21,11 +21,20 @@ const ROTATING_WORDS = [
   "Experiences",
 ];
 
-/* Split a string into an array of <span> elements per character */
+/* Split text into word-wrapped char spans so words never break mid-character */
 function charSpans(text: string, className: string) {
-  return text.split("").map((ch, i) => (
-    <span key={i} className={`${className} inline-block`} style={{ opacity: 0 }}>
-      {ch === " " ? "\u00A0" : ch}
+  return text.split(" ").map((word, wi, arr) => (
+    <span key={wi} className="inline-flex whitespace-nowrap">
+      {word.split("").map((ch, ci) => (
+        <span key={ci} className={`${className} inline-block`} style={{ opacity: 0 }}>
+          {ch}
+        </span>
+      ))}
+      {wi < arr.length - 1 && (
+        <span className={`${className} inline-block`} style={{ opacity: 0 }}>
+          {"\u00A0"}
+        </span>
+      )}
     </span>
   ));
 }
