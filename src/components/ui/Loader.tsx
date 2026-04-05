@@ -80,7 +80,7 @@ export function Loader({ onComplete }: LoaderProps) {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[200] bg-[#0a0a0a] flex items-center justify-center flex-col"
+      className="fixed inset-0 z-[200] bg-[#11120D] flex items-center justify-center flex-col"
     >
       {/* Pulsing dot */}
       <div

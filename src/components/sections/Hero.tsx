@@ -53,7 +53,7 @@ export function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
   const [visible, setVisible] = useState(true);
 
-  /* Rotating word cycle — untouched */
+  /* Rotating word cycle */
   useEffect(() => {
     const interval = setInterval(() => {
       setVisible(false);
@@ -124,12 +124,11 @@ export function Hero() {
       className="relative w-full"
       style={{ overflow: "visible", clipPath: "none" }}
     >
-      {/* Galaxy — h-screen container, overflows visually via clip:unset on section */}
+      {/* Galaxy — covers entire hero section including Logic */}
       {tier === "high" && (
         <div
           ref={galaxyParallax}
-          className="absolute top-0 left-0 right-0 z-0 pointer-events-none"
-          style={{ height: "100vh" }}
+          className="absolute inset-0 z-0 pointer-events-none"
         >
           <Scene mode="galaxy" />
         </div>
@@ -173,7 +172,8 @@ export function Hero() {
           </h1>
           <h1
             ref={headline2Ref}
-            className="font-clash text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[0.95] text-body"
+            className="font-clash text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[0.95]"
+            style={{ color: "#565449" }}
           >
             {charSpans("We Build the System They Run On.", "char-l2")}
           </h1>

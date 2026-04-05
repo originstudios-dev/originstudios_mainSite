@@ -31,7 +31,7 @@ export function Scene({ opacity = 1, className = "", mode = "orb" }: SceneProps)
         }}
         dpr={[1, 1.5]}
       >
-        {isGalaxy && <color attach="background" args={["#0a0a0a"]} />}
+        {isGalaxy && <color attach="background" args={["#11120D"]} />}
         {isGalaxy ? <Galaxy opacity={opacity} /> : <Orb opacity={opacity} />}
       </Canvas>
     </div>

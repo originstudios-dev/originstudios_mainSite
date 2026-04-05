@@ -15,6 +15,10 @@ const Scene = dynamic(
   { ssr: false, loading: () => <OrbFallback /> }
 );
 
+const MetaBalls = dynamic(() => import("@/components/ui/MetaBalls"), {
+  ssr: false,
+});
+
 export function FinalCall() {
   const sectionRef = useRef<HTMLElement>(null);
   const btnWrapRef = useRef<HTMLDivElement>(null);
@@ -73,6 +77,22 @@ export function FinalCall() {
       id="contact"
       className="relative py-32 md:py-40 px-8 md:px-16 max-w-7xl mx-auto overflow-hidden"
     >
+      {/* MetaBalls background */}
+      <div className="absolute inset-0 z-0 opacity-20">
+        <MetaBalls
+          color="#ffffff"
+          cursorBallColor="#ffffff"
+          cursorBallSize={2}
+          ballCount={15}
+          animationSize={30}
+          enableMouseInteraction
+          enableTransparency={true}
+          hoverSmoothness={0.15}
+          clumpFactor={1}
+          speed={0.3}
+        />
+      </div>
+
       {/* Gradient top border */}
       <div
         className="absolute top-0 left-0 w-full h-px"
@@ -82,7 +102,7 @@ export function FinalCall() {
         }}
       />
 
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
+      <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
         {/* Left: content */}
         <div className="flex-1">
           <span

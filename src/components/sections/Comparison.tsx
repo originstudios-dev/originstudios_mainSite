@@ -94,11 +94,11 @@ export function Comparison() {
 
       {/* ── Column labels ── */}
       <div className="mt-16 flex items-center gap-4 pb-4">
-        <span className="w-[40%] font-satoshi text-xs text-muted tracking-wide uppercase text-right pr-6">
+        <span className="w-[40%] font-satoshi text-xs text-muted font-semibold tracking-wide uppercase text-right pr-6">
           What they use
         </span>
         <span className="w-[20%]" />
-        <span className="w-[40%] font-satoshi text-xs text-white/70 tracking-wide uppercase pl-6">
+        <span className="w-[40%] font-satoshi text-xs tracking-wide uppercase pl-6 font-semibold" style={{ color: "#565449" }}>
           What we use
         </span>
       </div>
@@ -120,8 +120,8 @@ export function Comparison() {
               {/* ── Left side: "They" ── */}
               <div className="relative w-[40%] py-7 pr-6 flex justify-end">
                 <span
-                  className="relative font-satoshi text-sm md:text-base transition-colors duration-300"
-                  style={{ color: isHovered ? "#ef4444" : "#555" }}
+                  className="relative font-satoshi text-sm md:text-base font-medium transition-colors duration-300"
+                  style={{ color: isHovered ? "#ef4444" : "#777" }}
                 >
                   {row.they}
                   {/* Animated red strikethrough */}
@@ -152,9 +152,9 @@ export function Comparison() {
                 <span
                   className="font-satoshi text-sm md:text-base font-semibold transition-all duration-300"
                   style={{
-                    color: "#fff",
+                    color: "#565449",
                     textShadow: isHovered
-                      ? "0 0 20px rgba(255,255,255,0.35), 0 0 40px rgba(255,255,255,0.15)"
+                      ? "0 0 20px rgba(86,84,73,0.4), 0 0 40px rgba(86,84,73,0.15)"
                       : "none",
                   }}
                 >

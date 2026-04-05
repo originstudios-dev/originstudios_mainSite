@@ -7,6 +7,7 @@ import { Footer } from "@/components/ui/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Particles } from "@/components/ui/Particles";
 import { VelocityMarquee } from "@/components/ui/VelocityMarquee";
+import { WavePath } from "@/components/ui/WavePath";
 import { Hero } from "@/components/sections/Hero";
 import { Craft } from "@/components/sections/Craft";
 import { Comparison } from "@/components/sections/Comparison";
@@ -15,6 +16,7 @@ import { Methodology } from "@/components/sections/Methodology";
 import { FinalCall } from "@/components/sections/FinalCall";
 import { useLenis } from "@/lib/hooks/useLenis";
 import { BigLogo } from "@/components/ui/BigLogo";
+import { ScrollLine } from "@/components/ui/ScrollLine";
 import { gsap, ScrollTrigger } from "@/lib/registry";
 
 function HorizontalScrollSection({ children }: { children: React.ReactNode }) {
@@ -94,6 +96,7 @@ export default function Home() {
           {/* Ambient layers */}
           <CustomCursor />
           <Particles />
+          <ScrollLine />
 
           <Navbar />
           <main className="text-primary">
@@ -102,6 +105,7 @@ export default function Home() {
             {/* Solid bg from here */}
             <div className="relative z-10 bg-bg">
 
+            <WavePath className="px-8 md:px-16" />
             <VelocityMarquee
               text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
               className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
@@ -111,6 +115,7 @@ export default function Home() {
               <Craft />
             </RevealSection>
 
+            <WavePath className="px-8 md:px-16" />
             <VelocityMarquee
               text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
               className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
@@ -120,6 +125,7 @@ export default function Home() {
               <Comparison />
             </RevealSection>
 
+            <WavePath className="px-8 md:px-16" />
             <VelocityMarquee
               text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
               className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
@@ -129,6 +135,7 @@ export default function Home() {
               <Originals />
             </HorizontalScrollSection>
 
+            <WavePath className="px-8 md:px-16" />
             <VelocityMarquee
               text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
               className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
@@ -138,6 +145,7 @@ export default function Home() {
               <Methodology />
             </RevealSection>
 
+            <WavePath className="px-8 md:px-16" />
             <VelocityMarquee
               text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
               className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"

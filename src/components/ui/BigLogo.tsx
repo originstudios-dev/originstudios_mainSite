@@ -46,10 +46,10 @@ function ReactiveChar({ char, index }: { char: string; index: number }) {
         data-cursor="expand"
         className="inline-block select-none will-change-transform"
         style={{
-          color: hovered ? "#fff" : "transparent",
-          WebkitTextStroke: hovered ? "0px" : "1px rgba(255,255,255,0.12)",
+          color: hovered ? "#565449" : "transparent",
+          WebkitTextStroke: hovered ? "0px" : "1px rgba(86,84,73,0.2)",
           textShadow: hovered
-            ? "0 0 30px rgba(255,255,255,0.4), 0 5px 20px rgba(255,255,255,0.1)"
+            ? "0 0 30px rgba(86,84,73,0.4), 0 5px 20px rgba(86,84,73,0.1)"
             : "none",
           transition: "color 0.2s, -webkit-text-stroke 0.2s",
         }}

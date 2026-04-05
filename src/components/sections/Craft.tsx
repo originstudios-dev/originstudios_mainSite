@@ -106,7 +106,7 @@ export function Craft() {
                 (e.currentTarget as HTMLDivElement).style.boxShadow = `0 10px 40px ${edge.glow}`;
               }}
             >
-              <div className="relative bg-[#0a0a0a] rounded-xl p-8 h-full overflow-hidden">
+              <div className="relative bg-[#11120D] rounded-xl p-8 h-full overflow-hidden">
                 {/* Watermark number */}
                 <span
                   className="absolute top-4 right-6 font-clash text-5xl font-bold uppercase opacity-[0.08] select-none pointer-events-none"
