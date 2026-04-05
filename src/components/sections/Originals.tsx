@@ -5,33 +5,33 @@ import { useState } from "react";
 const services = [
   {
     num: "01",
-    name: "Origin Discovery",
-    tagline: "Strategy before pixels. Every time.",
-    deliverables: "Competitor audit · Positioning · UX research · Message hierarchy",
+    name: "Startup Websites",
+    tagline: "Your first impression, engineered to convert.",
+    deliverables: "Landing pages · Investor decks · Product showcases · Launch sites",
   },
   {
     num: "02",
-    name: "Origin Build",
-    tagline: "Custom. Fast. No builders. No bloat.",
-    deliverables: "Next.js · Sub-1s load · Custom CMS · Handover docs",
+    name: "SaaS Platforms",
+    tagline: "Dashboards, onboarding, and growth loops.",
+    deliverables: "Web apps · Auth flows · Billing integration · User dashboards",
   },
   {
     num: "03",
-    name: "Origin Motion",
-    tagline: "Motion & 3D as standard.",
-    deliverables: "Lottie · Three.js · Micro-interactions · Motion guide",
+    name: "Brand Experiences",
+    tagline: "3D, motion, and interactions that get remembered.",
+    deliverables: "Three.js scenes · Scroll animations · Micro-interactions · WebGL",
   },
   {
     num: "04",
-    name: "Origin GEO",
-    tagline: "Be the source AI engines cite.",
-    deliverables: "Entity mapping · JSON-LD · AEO clusters · AI monitoring",
+    name: "AI-Visible Systems",
+    tagline: "Built to be cited, not just indexed.",
+    deliverables: "GEO strategy · JSON-LD · Entity mapping · AI search monitoring",
   },
   {
     num: "05",
-    name: "Origin Marketing",
-    tagline: "Marketing stack, wired in at build.",
-    deliverables: "Ads infra · Meta Pixel · Email automation · Attribution",
+    name: "Growth Infrastructure",
+    tagline: "Marketing wired in. Not bolted on.",
+    deliverables: "Custom CMS · Analytics · Ad tracking · Email automation · CRM",
   },
 ];
 

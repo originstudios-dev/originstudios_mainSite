@@ -8,33 +8,33 @@ import { WordReveal } from "@/components/ui/WordReveal";
 const steps = [
   {
     num: "01",
-    title: "Discovery",
-    detail: "Weeks 1–2",
-    description: "Strategy, audit, positioning, wireframes",
+    title: "Understand",
+    detail: "Weeks 1-2",
+    description: "Deep-dive into your business, market, and users. We interview, audit competitors, and define the strategic direction before anything visual.",
   },
   {
     num: "02",
-    title: "Design",
-    detail: "Weeks 3–4",
-    description: "Figma, motion concepts, design system",
+    title: "Prototype",
+    detail: "Weeks 3-4",
+    description: "High-fidelity Figma prototypes with real copy, motion specs, and interaction flows. You see exactly what you are getting before a single line of code.",
   },
   {
     num: "03",
-    title: "Build",
-    detail: "Weeks 5–6",
-    description: "Next.js, animations, CMS, marketing stack",
+    title: "Engineer",
+    detail: "Weeks 5-6",
+    description: "Pixel-perfect code in Next.js. Custom CMS, 3D scenes, scroll animations, marketing integrations. All built in parallel by our full team.",
   },
   {
     num: "04",
-    title: "Schema & GEO",
+    title: "Optimise",
     detail: "Week 7",
-    description: "JSON-LD, entity mapping, AEO pages",
+    description: "Performance tuning, structured data, AI search visibility, accessibility audit. We make sure both humans and machines love your site.",
   },
   {
     num: "05",
-    title: "Launch",
+    title: "Ship",
     detail: "Week 8",
-    description: "95+ Lighthouse, QA, campaign-ready",
+    description: "Final QA, staging review, DNS cutover, monitoring setup. You go live with a 95+ Lighthouse score and a system ready to compound.",
   },
 ];
 
