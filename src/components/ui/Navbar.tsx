@@ -3,35 +3,41 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 
 const leftLinks = [
-  { label: "Services", href: "#services", hoverColor: "#ff6b9d" },
-  { label: "Stack", href: "#stack", hoverColor: "#4ade80" },
-  { label: "Process", href: "#method", hoverColor: "#fb923c" },
+  { label: "Services", target: "services", hoverColor: "#ff6b9d" },
+  { label: "Stack", target: "stack", hoverColor: "#4ade80" },
+  { label: "Process", target: "method", hoverColor: "#fb923c" },
 ];
 
 const rightLinks = [
-  { label: "Work", href: "#work", hoverColor: "#60a5fa" },
-  { label: "About", href: "#about", hoverColor: "#c084fc" },
-  { label: "Contact", href: "#contact", hoverColor: "#f87171" },
+  { label: "Work", target: "work", hoverColor: "#60a5fa" },
+  { label: "About", target: "about", hoverColor: "#c084fc" },
+  { label: "Contact", target: "contact", hoverColor: "#f87171" },
 ];
 
 const CHARS = "!@#$%&*_+-=<>?";
 
+function scrollToSection(id: string) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
 function MagneticScrambleLink({
   label,
-  href,
+  target,
   hoverColor,
 }: {
   label: string;
-  href: string;
+  target: string;
   hoverColor: string;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLAnchorElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const hovering = useRef(false);
   const [color, setColor] = useState("#11120D");
 
-  // Magnetic: move only the inner text, not the container
   const onMouseMove = useCallback((e: React.MouseEvent) => {
     const wrap = wrapRef.current;
     const el = textRef.current;
@@ -78,6 +84,14 @@ function MagneticScrambleLink({
     }, 80);
   }, [label, hoverColor]);
 
+  const handleClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      scrollToSection(target);
+    },
+    [target]
+  );
+
   return (
     <div
       ref={wrapRef}
@@ -86,15 +100,22 @@ function MagneticScrambleLink({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {/* Invisible label holds the width constant */}
       <span className="font-satoshi text-xs font-bold tracking-wide invisible select-none" aria-hidden>
         {label}
       </span>
-      <a
+      <span
         ref={textRef}
-        href={href}
+        role="button"
+        tabIndex={0}
         data-cursor="expand"
-        className="font-satoshi text-xs font-bold tracking-wide absolute inset-0 flex items-center justify-center"
+        onClick={handleClick}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            scrollToSection(target);
+          }
+        }}
+        className="font-satoshi text-xs font-bold tracking-wide absolute inset-0 flex items-center justify-center cursor-pointer"
         style={{
           color,
           transition: "color 200ms, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1)",
@@ -102,7 +123,7 @@ function MagneticScrambleLink({
         }}
       >
         {label}
-      </a>
+      </span>
     </div>
   );
 }
@@ -172,15 +193,20 @@ export function Navbar() {
         </div>
 
         {/* Center wordmark */}
-        <a
-          href="#"
-          className="font-clash font-bold text-[#11120D] tracking-[0.15em] md:tracking-[0.2em] uppercase whitespace-nowrap"
+        <span
+          role="button"
+          tabIndex={0}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="font-clash font-bold text-[#11120D] tracking-[0.15em] md:tracking-[0.2em] uppercase whitespace-nowrap cursor-pointer"
         >
           <span className="text-lg sm:text-xl md:text-2xl">Origin</span>
           <span className="text-[9px] sm:text-[10px] md:text-xs ml-1 md:ml-1.5 font-medium tracking-[0.25em] md:tracking-[0.3em] text-[#11120D]/60">
             Studios
           </span>
-        </a>
+        </span>
 
         {/* Right links */}
         <div className="hidden md:flex items-center gap-3 lg:gap-5">

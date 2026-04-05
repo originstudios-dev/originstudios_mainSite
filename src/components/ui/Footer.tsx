@@ -1,3 +1,13 @@
+"use client";
+
+const footerLinks = [
+  { label: "Work", target: "work" },
+  { label: "Services", target: "services" },
+  { label: "Process", target: "method" },
+  { label: "About", target: "about" },
+  { label: "Contact", target: "contact" },
+];
+
 export function Footer() {
   return (
     <footer className="border-t border-[#D8CFBC]/5 py-12 px-8 md:px-16 max-w-7xl mx-auto">
@@ -10,11 +20,15 @@ export function Footer() {
         {/* Middle: nav + contact */}
         <div className="flex flex-col md:flex-row justify-between gap-6">
           <nav className="flex flex-wrap gap-x-6 gap-y-2">
-            <a href="#work" className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors">Work</a>
-            <a href="#services" className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors">Services</a>
-            <a href="#method" className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors">Process</a>
-            <a href="#about" className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors">About</a>
-            <a href="#contact" className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors">Contact</a>
+            {footerLinks.map((link) => (
+              <button
+                key={link.target}
+                onClick={() => document.getElementById(link.target)?.scrollIntoView({ behavior: "smooth" })}
+                className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors"
+              >
+                {link.label}
+              </button>
+            ))}
           </nav>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
             <a href="mailto:talk@originstudios.dev" className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors">

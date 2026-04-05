@@ -52,8 +52,8 @@ export function Craft() {
           top: 50%;
           left: 50%;
           border-radius: 12px;
-          border: 1px solid #D8CFBC;
-          background: #11120D;
+          border: 1px solid #565449;
+          background: #D8CFBC;
           transform-style: preserve-3d;
           will-change: transform;
           backface-visibility: hidden;
@@ -82,11 +82,19 @@ export function Craft() {
         />
 
         {/* Headline */}
-        <CharReveal
-          text="What Standard Studios Can't Offer."
-          className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight mt-6"
-          scrub={false}
-        />
+        <div className="mt-6">
+          <CharReveal
+            text="What Standard Studios"
+            className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight"
+            scrub={false}
+          />
+          <CharReveal
+            text="Can't Offer."
+            className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight"
+            scrub={false}
+            delay={0.3}
+          />
+        </div>
 
         {/* Two-column: text left + swapping cards right */}
         <div className="mt-16 flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
@@ -125,19 +133,19 @@ export function Craft() {
                 <Card key={edge.num}>
                   <div className="p-8 h-full flex flex-col justify-between relative overflow-hidden">
                     {/* Watermark */}
-                    <span className="absolute top-4 right-6 font-clash text-6xl font-bold uppercase text-[#D8CFBC]/10 select-none pointer-events-none">
+                    <span className="absolute top-4 right-6 font-clash text-6xl font-bold uppercase text-[#565449]/10 select-none pointer-events-none">
                       {edge.num}
                     </span>
 
                     <div className="relative z-10">
-                      <span className="font-satoshi text-sm text-[#D8CFBC] tracking-widest">
+                      <span className="font-satoshi text-sm text-[#565449] tracking-widest font-medium">
                         {edge.num}
                       </span>
-                      <div className="mt-3 h-px w-full bg-[#D8CFBC]/20" />
-                      <h3 className="font-satoshi text-xl font-bold text-[#FFFBF4] mt-5">
+                      <div className="mt-3 h-px w-full bg-[#565449]/20" />
+                      <h3 className="font-satoshi text-xl font-bold text-[#11120D] mt-5">
                         {edge.title}
                       </h3>
-                      <p className="font-satoshi text-sm text-[#D8CFBC]/80 mt-3 leading-relaxed">
+                      <p className="font-satoshi text-sm text-[#11120D]/70 mt-3 leading-relaxed">
                         {edge.body}
                       </p>
                     </div>

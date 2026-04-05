@@ -193,19 +193,19 @@ export function Hero() {
 
         {/* CTAs */}
         <div data-animate className="flex gap-4 items-center flex-wrap">
-          <a
-            href="#work"
+          <button
+            onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
             data-cursor="expand"
             className="inline-block font-satoshi text-sm font-medium bg-[#FFFBF4] text-[#11120D] px-6 py-3 hover:bg-[#D8CFBC] transition-colors"
           >
             See Our Work →
-          </a>
-          <a
-            href="#contact"
+          </button>
+          <button
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             className="font-satoshi text-sm text-body border-b border-body/50 hover:text-primary hover:border-primary transition-colors pb-0.5"
           >
             Start a Project
-          </a>
+          </button>
         </div>
 
         {/* Trust bar */}

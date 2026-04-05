@@ -19,6 +19,7 @@ import { BigLogo } from "@/components/ui/BigLogo";
 import { ScrollLine } from "@/components/ui/ScrollLine";
 import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
 import { CursorReveal } from "@/components/ui/CursorReveal";
+import { ContactIsland } from "@/components/ui/ContactIsland";
 import { gsap, ScrollTrigger } from "@/lib/registry";
 
 function HorizontalScrollSection({ children }: { children: React.ReactNode }) {
@@ -100,6 +101,7 @@ export default function Home() {
           <Particles />
           <ScrollLine />
           <AmbientOrbs />
+          <ContactIsland />
 
           <Navbar />
           <main className="text-primary">
