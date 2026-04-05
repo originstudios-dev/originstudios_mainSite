@@ -3,6 +3,7 @@
 import { useRef, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { gsap } from "@/lib/registry";
+import { CharReveal } from "@/components/ui/CharReveal";
 import { useDeviceCapability } from "@/lib/hooks/useDeviceCapability";
 import { OrbFallback } from "@/components/three/OrbFallback";
 
@@ -91,16 +92,10 @@ export function FinalCall() {
             Let&apos;s build
           </span>
 
-          <h2
-            data-animate
-            className="font-clash text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight mt-6 leading-[1.1]"
-          >
-            Your Competitors Are Building Websites.
-            <br />
-            <span className="text-body">
-              You Could Be Building the System That Beats Them.
-            </span>
-          </h2>
+          <div className="mt-6">
+            <CharReveal text="Your Competitors Are Building Websites." className="font-clash text-5xl md:text-7xl font-bold uppercase tracking-tight leading-[1.1]" scrub={false} />
+            <CharReveal text="You Could Be Building the System That Beats Them." className="font-clash text-5xl md:text-7xl font-bold uppercase tracking-tight leading-[1.1] text-body" scrub={false} delay={0.3} />
+          </div>
 
           <p
             data-animate

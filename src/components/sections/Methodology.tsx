@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { gsap, ScrollTrigger } from "@/lib/registry";
+import { CharReveal } from "@/components/ui/CharReveal";
+import { WordReveal } from "@/components/ui/WordReveal";
 
 const steps = [
   {
@@ -74,13 +76,9 @@ export function Methodology() {
       ref={sectionRef}
       className="py-32 md:py-48 px-8 md:px-16 max-w-7xl mx-auto"
     >
-      <span className="font-satoshi text-xs text-label tracking-[0.2em] uppercase">
-        How we work
-      </span>
+      <WordReveal text="How we work" as="span" className="font-satoshi text-xs text-label tracking-[0.2em] uppercase" />
 
-      <h2 className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight mt-6">
-        Five Sprints. Eight Weeks. One Launch.
-      </h2>
+      <CharReveal text="Five Sprints. Eight Weeks. One Launch." className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight mt-6" scrub={false} />
 
       <div className="mt-16">
         {steps.map((step, i) => {

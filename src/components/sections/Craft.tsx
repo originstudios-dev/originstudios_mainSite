@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { CharReveal } from "@/components/ui/CharReveal";
+import { WordReveal } from "@/components/ui/WordReveal";
 
 const edges = [
   {
@@ -80,14 +82,10 @@ export function Craft() {
 
       <section className="py-32 md:py-40 px-8 md:px-16 max-w-7xl mx-auto">
         {/* Label */}
-        <span className="font-satoshi text-xs text-label tracking-[0.2em] uppercase">
-          The Origin Difference
-        </span>
+        <WordReveal text="The Origin Difference" as="span" className="font-satoshi text-xs text-label tracking-[0.2em] uppercase" />
 
         {/* Headline */}
-        <h2 className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight mt-6">
-          What Standard Studios Can&rsquo;t Offer.
-        </h2>
+        <CharReveal text="What Standard Studios Can't Offer." className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight mt-6" scrub={false} />
 
         {/* Edge cards */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">

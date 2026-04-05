@@ -6,6 +6,7 @@ import { Loader } from "@/components/ui/Loader";
 import { Footer } from "@/components/ui/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Particles } from "@/components/ui/Particles";
+import { VelocityMarquee } from "@/components/ui/VelocityMarquee";
 import { Hero } from "@/components/sections/Hero";
 import { Craft } from "@/components/sections/Craft";
 import { Comparison } from "@/components/sections/Comparison";
@@ -16,38 +17,38 @@ import { useLenis } from "@/lib/hooks/useLenis";
 import { BigLogo } from "@/components/ui/BigLogo";
 import { gsap, ScrollTrigger } from "@/lib/registry";
 
-function SectionDivider() {
-  const ref = useRef<HTMLDivElement>(null);
+function HorizontalScrollSection({ children }: { children: React.ReactNode }) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!ref.current) return;
-    const trigger = ScrollTrigger.create({
-      trigger: ref.current,
-      start: "top 90%",
-      once: true,
-      onEnter: () => {
-        gsap.fromTo(
-          ref.current,
-          { scaleX: 0 },
-          { scaleX: 1, duration: 1.2, ease: "power3.out" }
-        );
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
+
+    const scrollWidth = track.scrollWidth - window.innerWidth;
+
+    const tween = gsap.to(track, {
+      x: -scrollWidth,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        pin: true,
+        scrub: 0.5,
+        end: () => `+=${scrollWidth}`,
+        invalidateOnRefresh: true,
       },
     });
-    return () => trigger.kill();
+
+    return () => { tween.kill(); };
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-8 md:px-16">
-      <div
-        ref={ref}
-        className="h-px origin-left"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 20%, rgba(255,255,255,0.08) 80%, transparent 100%)",
-          transform: "scaleX(0)",
-        }}
-      />
-    </div>
+    <section ref={sectionRef} className="overflow-hidden">
+      <div ref={trackRef} className="flex will-change-transform">
+        {children}
+      </div>
+    </section>
   );
 }
 
@@ -101,27 +102,47 @@ export default function Home() {
             {/* Solid bg from here */}
             <div className="relative z-10 bg-bg">
 
-            <SectionDivider />
+            <VelocityMarquee
+              text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
+              className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
+              baseVelocity={30}
+            />
             <RevealSection>
               <Craft />
             </RevealSection>
 
-            <SectionDivider />
+            <VelocityMarquee
+              text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
+              className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
+              baseVelocity={30}
+            />
             <RevealSection>
               <Comparison />
             </RevealSection>
 
-            <SectionDivider />
-            <RevealSection>
+            <VelocityMarquee
+              text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
+              className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
+              baseVelocity={30}
+            />
+            <HorizontalScrollSection>
               <Originals />
-            </RevealSection>
+            </HorizontalScrollSection>
 
-            <SectionDivider />
+            <VelocityMarquee
+              text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
+              className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
+              baseVelocity={30}
+            />
             <RevealSection>
               <Methodology />
             </RevealSection>
 
-            <SectionDivider />
+            <VelocityMarquee
+              text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
+              className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
+              baseVelocity={30}
+            />
             <RevealSection>
               <FinalCall />
             </RevealSection>
