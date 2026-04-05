@@ -2,10 +2,12 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { gsap } from "@/lib/registry";
+import { supabase } from "@/lib/supabase";
 
 export function ContactIsland() {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
   const islandRef = useRef<HTMLButtonElement>(null);
 
@@ -34,28 +36,30 @@ export function ContactIsland() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(false);
     const form = e.currentTarget;
     const data = new FormData(form);
     const name = data.get("name") as string;
     const requirement = data.get("requirement") as string;
-    const build = data.get("build") as string;
+    const details = data.get("build") as string;
 
-    // mailto fallback
-    const subject = encodeURIComponent(`Project inquiry from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nRequirement: ${requirement}\nWhat to build: ${build}`
-    );
-    window.open(
-      `mailto:talk@originstudios.dev?subject=${subject}&body=${body}`,
-      "_blank"
-    );
+    const { error: insertError } = await supabase
+      .from("contact_submissions")
+      .insert({ name, requirement, details });
+
+    if (insertError) {
+      setError(true);
+      setTimeout(() => setError(false), 3000);
+      return;
+    }
+
     setSubmitted(true);
+    form.reset();
     setTimeout(() => {
       setSubmitted(false);
       setOpen(false);
-      form.reset();
     }, 2500);
   };
 
@@ -171,7 +175,15 @@ export function ContactIsland() {
                 We&apos;ll be in touch.
               </p>
               <p className="font-satoshi text-sm text-[#D8CFBC] mt-2">
-                Check your email for the next steps.
+                Your inquiry has been received. We&apos;ll get back to you soon.
+              </p>
+            </div>
+          )}
+
+          {error && (
+            <div className="px-6 pb-4">
+              <p className="font-satoshi text-sm text-red-400 text-center">
+                Something went wrong. Please try again or email us directly.
               </p>
             </div>
           )}
