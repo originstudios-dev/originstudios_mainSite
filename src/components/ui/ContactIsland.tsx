@@ -156,7 +156,7 @@ export function ContactIsland() {
                   Send Inquiry
                 </button>
                 <a
-                  href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0r2VYR3vfVgBYnSGnKTmfOc7bWQqVfLVITw1FhKoTHO5VGaSXrK8e2cjZpPRBH3JIyBOXNj0Mb?gv=true"
+                  href="https://calendar.app.google/A4dhfx1ANCEbszet5"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 font-satoshi text-sm font-medium border border-[#D8CFBC]/30 text-[#D8CFBC] py-3 rounded-lg hover:bg-[#D8CFBC]/10 transition-colors text-center"
@@ -183,22 +183,22 @@ export function ContactIsland() {
         ref={islandRef}
         onClick={toggle}
         data-cursor="expand"
-        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] flex items-center gap-3 px-6 py-3 rounded-full border border-[#D8CFBC]/20 backdrop-blur-md transition-all duration-300 hover:border-[#D8CFBC]/40 hover:scale-105 group"
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] flex items-center gap-3 px-6 py-3 rounded-full border border-[#D8CFBC]/30 backdrop-blur-md transition-all duration-300 hover:scale-105 group"
         style={{
           background: open
-            ? "rgba(17, 18, 13, 0.95)"
-            : "rgba(17, 18, 13, 0.85)",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+            ? "rgba(216, 207, 188, 0.95)"
+            : "rgba(216, 207, 188, 0.92)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
         }}
         aria-label={open ? "Close contact form" : "Open contact form"}
       >
         {/* Pulse dot */}
         <span className="relative flex h-2.5 w-2.5">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D8CFBC] opacity-40" />
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#D8CFBC]" />
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#11120D] opacity-30" />
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#11120D]" />
         </span>
 
-        <span className="font-satoshi text-sm font-medium text-[#FFFBF4] tracking-wide">
+        <span className="font-satoshi text-sm font-medium text-[#11120D] tracking-wide">
           {open ? "Close" : "Contact Us"}
         </span>
 
@@ -207,7 +207,7 @@ export function ContactIsland() {
           width="12"
           height="12"
           viewBox="0 0 12 12"
-          className="text-[#D8CFBC] transition-transform duration-300"
+          className="text-[#11120D] transition-transform duration-300"
           style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
         >
           <path

@@ -4,7 +4,6 @@ const footerLinks = [
   { label: "Work", target: "work" },
   { label: "Services", target: "services" },
   { label: "Process", target: "method" },
-  { label: "About", target: "about" },
   { label: "Contact", target: "contact" },
 ];
 

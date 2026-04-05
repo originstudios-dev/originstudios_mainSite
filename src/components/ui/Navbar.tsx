@@ -10,7 +10,6 @@ const leftLinks = [
 
 const rightLinks = [
   { label: "Work", target: "work", hoverColor: "#60a5fa" },
-  { label: "About", target: "about", hoverColor: "#c084fc" },
   { label: "Contact", target: "contact", hoverColor: "#f87171" },
 ];
 

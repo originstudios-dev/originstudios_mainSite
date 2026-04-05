@@ -128,7 +128,9 @@ export function FinalCall() {
           >
             <a
               ref={btnRef}
-              href="#"
+              href="https://calendar.app.google/A4dhfx1ANCEbszet5"
+              target="_blank"
+              rel="noopener noreferrer"
               data-cursor="expand"
               className="inline-block font-satoshi text-base font-medium bg-primary text-bg px-8 py-3.5 hover:bg-[#FFFBF4]/90 transition-all duration-200 will-change-transform"
               style={{ transform: "translate3d(0,0,0)" }}

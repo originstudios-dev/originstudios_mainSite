@@ -39,7 +39,7 @@ export function Originals() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="flex h-screen">
+    <div id="work" className="flex h-screen">
       {/* Header / intro card */}
       <div className="min-w-[85vw] md:min-w-[60vw] lg:min-w-[45vw] h-screen flex flex-col items-center justify-center px-8 md:px-16 shrink-0">
         <span className="font-satoshi text-sm text-[#D8CFBC] tracking-[0.2em] uppercase font-medium">

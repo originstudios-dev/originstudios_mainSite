@@ -73,7 +73,7 @@ export function Craft() {
         }
       `}</style>
 
-      <section className="py-32 md:py-40 px-8 md:px-16 max-w-7xl mx-auto">
+      <section id="services" className="py-32 md:py-40 px-8 md:px-16 max-w-7xl mx-auto">
         {/* Label */}
         <WordReveal
           text="The Origin Difference"
@@ -138,7 +138,7 @@ export function Craft() {
                     </span>
 
                     <div className="relative z-10">
-                      <span className="font-satoshi text-sm text-[#565449] tracking-widest font-medium">
+                      <span className="font-satoshi text-sm text-[#565449] tracking-widest font-bold">
                         {edge.num}
                       </span>
                       <div className="mt-3 h-px w-full bg-[#565449]/20" />

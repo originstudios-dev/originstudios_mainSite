@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Origin Studios | AI-Era Web Studio / GEO, Motion & Strategy",
+  title: "Origin Studios",
   description:
     "Origin Studios builds custom, AI-optimised websites with motion design, GEO/AEO, and full marketing integration. Strategy-first.",
   keywords: [
