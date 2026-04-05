@@ -20,6 +20,7 @@ import { ScrollLine } from "@/components/ui/ScrollLine";
 import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
 import { CursorReveal } from "@/components/ui/CursorReveal";
 import { ContactIsland } from "@/components/ui/ContactIsland";
+import { StickerRain } from "@/components/ui/StickerRain";
 import { gsap, ScrollTrigger } from "@/lib/registry";
 
 function HorizontalScrollSection({ children }: { children: React.ReactNode }) {
@@ -198,7 +199,15 @@ export default function Home() {
               baseVelocity={30}
             />
             <RevealSection>
-              <FinalCall />
+              <div className="relative">
+                {/* Sticker rain - full viewport width, behind content */}
+                <div className="absolute inset-0 -left-[50vw] -right-[50vw] ml-[calc(50%-50vw)] w-screen overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
+                  <div className="relative w-full h-full">
+                    <StickerRain />
+                  </div>
+                </div>
+                <FinalCall />
+              </div>
             </RevealSection>
             </div>
           </main>

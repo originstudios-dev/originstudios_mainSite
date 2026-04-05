@@ -9,10 +9,6 @@ const MetaBalls = dynamic(() => import("@/components/ui/MetaBalls"), {
   ssr: false,
 });
 
-const StickerRain = dynamic(
-  () => import("@/components/ui/StickerRain").then((mod) => ({ default: mod.StickerRain })),
-  { ssr: false }
-);
 
 export function FinalCall() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -87,8 +83,6 @@ export function FinalCall() {
         />
       </div>
 
-      {/* Sticker rain behind content */}
-      <StickerRain />
 
       {/* Gradient top border */}
       <div
