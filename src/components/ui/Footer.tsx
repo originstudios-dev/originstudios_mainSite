@@ -17,8 +17,8 @@ export function Footer() {
             <a href="#contact" className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors">Contact</a>
           </nav>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-            <a href="mailto:hello@originstudios.dev" className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors">
-              hello@originstudios.dev
+            <a href="mailto:talk@originstudios.dev" className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors">
+              talk@originstudios.dev
             </a>
           </div>
         </div>

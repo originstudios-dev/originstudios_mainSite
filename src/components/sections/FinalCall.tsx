@@ -140,10 +140,10 @@ export function FinalCall() {
           <p className="font-satoshi text-sm text-[#FFFBF4]/50">
             Or email us directly:{" "}
             <a
-              href="mailto:hello@originstudios.dev"
+              href="mailto:talk@originstudios.dev"
               className="relative text-[#FFFBF4]/70 hover:text-primary transition-colors group"
             >
-              <span>hello@originstudios.dev</span>
+              <span>talk@originstudios.dev</span>
               <span className="absolute left-0 -bottom-px h-px w-0 bg-current transition-all duration-300 group-hover:w-full" />
             </a>
           </p>

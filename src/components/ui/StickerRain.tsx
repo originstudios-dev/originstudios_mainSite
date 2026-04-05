@@ -114,11 +114,18 @@ export function StickerRain() {
     const container = containerRef.current;
     if (!container) return;
 
+    // Skip on reduced motion
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const w = container.clientWidth;
     const h = container.clientHeight;
 
+    // Reduce particles on mobile
+    const isMobile = w < 768;
+    const count = isMobile ? 20 : PARTICLE_COUNT;
+
     // Init — scatter across viewport so it looks populated immediately
-    particlesRef.current = Array.from({ length: PARTICLE_COUNT }, () =>
+    particlesRef.current = Array.from({ length: count }, () =>
       createParticle(w, h, true)
     );
 
@@ -180,10 +187,13 @@ export function StickerRain() {
       ref={containerRef}
       className="absolute inset-0 overflow-hidden pointer-events-none"
       style={{ zIndex: 0 }}
+      aria-hidden="true"
+      role="presentation"
     >
       {Array.from({ length: PARTICLE_COUNT }, (_, i) => (
         <img
           key={i}
+          loading="lazy"
           ref={(el) => {
             elementsRef.current[i] = el;
           }}

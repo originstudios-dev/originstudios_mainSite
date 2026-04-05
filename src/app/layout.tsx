@@ -44,7 +44,7 @@ const jsonLd = [
     description:
       "Origin Studios builds custom, AI-optimised websites with motion design, GEO/AEO, and full marketing integration. Strategy-first web studio.",
     url: "https://originstudios.dev",
-    email: "hello@originstudios.dev",
+    email: "talk@originstudios.dev",
     founder: {
       "@type": "Person",
       name: "Piyush",
@@ -115,6 +115,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#11120D" />
         <link
           rel="preload"
           href="/fonts/ClashDisplay-Variable.woff2"
@@ -134,7 +138,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <a href="#contact" className="skip-to-content font-satoshi">
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }
