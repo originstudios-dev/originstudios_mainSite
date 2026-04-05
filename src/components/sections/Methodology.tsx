@@ -76,9 +76,12 @@ export function Methodology() {
       ref={sectionRef}
       className="py-32 md:py-48 px-8 md:px-16 max-w-7xl mx-auto"
     >
-      <WordReveal text="How we work" as="span" className="font-satoshi text-xs text-label tracking-[0.2em] uppercase" />
+      <WordReveal text="How we work" as="span" className="font-satoshi text-sm text-[#FFFBF4]/60 tracking-[0.2em] uppercase" />
 
-      <CharReveal text="Five Sprints. Eight Weeks. One Launch." className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight mt-6" scrub={false} />
+      <div className="mt-6">
+        <CharReveal text="Five Sprints. Eight Weeks." className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight" scrub={false} />
+        <CharReveal text="One Launch." className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight" scrub={false} delay={0.3} />
+      </div>
 
       <div className="mt-16">
         {steps.map((step, i) => {
@@ -90,14 +93,14 @@ export function Methodology() {
               ref={(el) => {
                 rowsRef.current[i] = el;
               }}
-              className="relative overflow-hidden border-b border-white/[0.06]"
+              className="relative overflow-hidden border-b border-[#D8CFBC]/[0.06]"
               data-cursor="expand"
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              {/* White sweep background */}
+              {/* Floral white sweep background */}
               <div
-                className="absolute inset-0 bg-white origin-left transition-transform duration-300 ease-out"
+                className="absolute inset-0 bg-[#FFFBF4] origin-left transition-transform duration-300 ease-out"
                 style={{ transform: isHovered ? "scaleX(1)" : "scaleX(0)" }}
               />
 
@@ -107,7 +110,7 @@ export function Methodology() {
               >
                 <span
                   className="font-satoshi text-2xl md:text-3xl font-light w-20 transition-colors duration-300"
-                  style={{ color: isHovered ? "#0a0a0a" : "#ffffff" }}
+                  style={{ color: isHovered ? "#11120D" : "#FFFBF4" }}
                 >
                   {step.num}
                 </span>
@@ -119,7 +122,7 @@ export function Methodology() {
                     style={{
                       opacity: isHovered ? 0 : 1,
                       transform: isHovered ? "translateY(-10px)" : "translateY(0)",
-                      color: "#ffffff",
+                      color: "#FFFBF4",
                     }}
                   >
                     {step.title}
@@ -129,7 +132,7 @@ export function Methodology() {
                     style={{
                       opacity: isHovered ? 1 : 0,
                       transform: isHovered ? "translateY(0)" : "translateY(10px)",
-                      color: "#0a0a0a",
+                      color: "#11120D",
                     }}
                   >
                     {step.description}
@@ -140,7 +143,7 @@ export function Methodology() {
                   className="hidden md:block font-satoshi text-xs tracking-wide text-right max-w-[200px] transition-all duration-300"
                   style={{
                     opacity: isHovered ? 1 : 0,
-                    color: "#0a0a0a",
+                    color: "#11120D",
                     transform: isHovered ? "translateX(0)" : "translateX(20px)",
                   }}
                 >

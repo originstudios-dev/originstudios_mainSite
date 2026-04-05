@@ -4,26 +4,20 @@ import { useRef, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { gsap } from "@/lib/registry";
 import { CharReveal } from "@/components/ui/CharReveal";
-import { useDeviceCapability } from "@/lib/hooks/useDeviceCapability";
-import { OrbFallback } from "@/components/three/OrbFallback";
-
-const Scene = dynamic(
-  () =>
-    import("@/components/three/Scene").then((mod) => ({
-      default: mod.Scene,
-    })),
-  { ssr: false, loading: () => <OrbFallback /> }
-);
 
 const MetaBalls = dynamic(() => import("@/components/ui/MetaBalls"), {
   ssr: false,
 });
 
+const StickerRain = dynamic(
+  () => import("@/components/ui/StickerRain").then((mod) => ({ default: mod.StickerRain })),
+  { ssr: false }
+);
+
 export function FinalCall() {
   const sectionRef = useRef<HTMLElement>(null);
   const btnWrapRef = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLAnchorElement>(null);
-  const tier = useDeviceCapability();
 
   const onMouseMove = useCallback((e: React.MouseEvent) => {
     const wrap = btnWrapRef.current;
@@ -35,7 +29,7 @@ export function FinalCall() {
     const dx = (e.clientX - cx) * 0.25;
     const dy = (e.clientY - cy) * 0.25;
     btn.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
-    btn.style.boxShadow = "0 0 30px rgba(255,255,255,0.10)";
+    btn.style.boxShadow = "0 0 30px rgba(216,207,188,0.10)";
   }, []);
 
   const onMouseLeave = useCallback(() => {
@@ -75,13 +69,13 @@ export function FinalCall() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative py-32 md:py-40 px-8 md:px-16 max-w-7xl mx-auto overflow-hidden"
+      className="relative min-h-screen py-32 md:py-40 px-8 md:px-16 max-w-7xl mx-auto overflow-hidden flex items-center"
     >
       {/* MetaBalls background */}
       <div className="absolute inset-0 z-0 opacity-20">
         <MetaBalls
-          color="#ffffff"
-          cursorBallColor="#ffffff"
+          color="#D8CFBC"
+          cursorBallColor="#D8CFBC"
           cursorBallSize={2}
           ballCount={15}
           animationSize={30}
@@ -93,75 +87,66 @@ export function FinalCall() {
         />
       </div>
 
+      {/* Sticker rain behind content */}
+      <StickerRain />
+
       {/* Gradient top border */}
       <div
         className="absolute top-0 left-0 w-full h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.10) 50%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(216,207,188,0.10) 50%, transparent 100%)",
         }}
       />
 
-      <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
-        {/* Left: content */}
-        <div className="flex-1">
-          <span
-            data-animate
-            className="font-satoshi text-xs text-label tracking-[0.2em] uppercase"
-          >
-            Let&apos;s build
-          </span>
+      <div className="relative z-10 w-full">
+        <span
+          data-animate
+          className="font-satoshi text-sm text-[#FFFBF4]/70 tracking-[0.2em] uppercase"
+        >
+          Let&apos;s build
+        </span>
 
-          <div className="mt-6">
-            <CharReveal text="Your Competitors Are Building Websites." className="font-clash text-5xl md:text-7xl font-bold uppercase tracking-tight leading-[1.1]" scrub={false} />
-            <CharReveal text="You Could Be Building the System That Beats Them." className="font-clash text-5xl md:text-7xl font-bold uppercase tracking-tight leading-[1.1] text-body" scrub={false} delay={0.3} />
-          </div>
-
-          <p
-            data-animate
-            className="font-satoshi text-base text-body mt-6 max-w-xl"
-          >
-            Discovery calls are free. A generic digital presence is expensive.
-          </p>
-
-          <div data-animate className="mt-10 flex flex-col items-start gap-4">
-            <div
-              ref={btnWrapRef}
-              onMouseMove={onMouseMove}
-              onMouseLeave={onMouseLeave}
-              className="py-2 px-2"
-            >
-              <a
-                ref={btnRef}
-                href="#"
-                data-cursor="expand"
-                className="inline-block font-satoshi text-sm font-medium bg-primary text-bg px-8 py-3.5 hover:bg-white/90 transition-all duration-200 will-change-transform"
-                style={{ transform: "translate3d(0,0,0)" }}
-              >
-                Book a Free Discovery Call →
-              </a>
-            </div>
-
-            <p className="font-satoshi text-xs text-muted">
-              Or email us directly:{" "}
-              <a
-                href="mailto:hello@originstudios.dev"
-                className="relative text-label hover:text-primary transition-colors group"
-              >
-                <span>hello@originstudios.dev</span>
-                <span className="absolute left-0 -bottom-px h-px w-0 bg-current transition-all duration-300 group-hover:w-full" />
-              </a>
-            </p>
-          </div>
+        <div className="mt-6">
+          <CharReveal text="Your Competitors Are Building Websites." className="font-clash text-5xl md:text-7xl font-bold uppercase tracking-tight leading-[1.1]" scrub={false} />
+          <CharReveal text="You Could Be Building the System That Beats Them." className="font-clash text-5xl md:text-7xl font-bold uppercase tracking-tight leading-[1.1] text-body" scrub={false} delay={0.3} />
         </div>
 
-        {/* Right: returning orb — bookends the page */}
-        <div
+        <p
           data-animate
-          className="hidden md:block w-[200px] h-[200px] lg:w-[260px] lg:h-[260px] shrink-0 relative"
-          style={{ animation: "breathe 4s ease-in-out infinite" }}
+          className="font-satoshi text-lg text-[#FFFBF4]/80 mt-6 max-w-xl"
         >
-          {tier === "high" ? <Scene opacity={0.6} /> : <OrbFallback />}
+          Discovery calls are free. A generic digital presence is expensive.
+        </p>
+
+        <div data-animate className="mt-10 flex flex-col items-start gap-4">
+          <div
+            ref={btnWrapRef}
+            onMouseMove={onMouseMove}
+            onMouseLeave={onMouseLeave}
+            className="py-2 px-2"
+          >
+            <a
+              ref={btnRef}
+              href="#"
+              data-cursor="expand"
+              className="inline-block font-satoshi text-base font-medium bg-primary text-bg px-8 py-3.5 hover:bg-[#FFFBF4]/90 transition-all duration-200 will-change-transform"
+              style={{ transform: "translate3d(0,0,0)" }}
+            >
+              Book a Free Discovery Call →
+            </a>
+          </div>
+
+          <p className="font-satoshi text-sm text-[#FFFBF4]/50">
+            Or email us directly:{" "}
+            <a
+              href="mailto:hello@originstudios.dev"
+              className="relative text-[#FFFBF4]/70 hover:text-primary transition-colors group"
+            >
+              <span>hello@originstudios.dev</span>
+              <span className="absolute left-0 -bottom-px h-px w-0 bg-current transition-all duration-300 group-hover:w-full" />
+            </a>
+          </p>
         </div>
       </div>
     </section>

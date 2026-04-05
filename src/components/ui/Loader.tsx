@@ -85,19 +85,19 @@ export function Loader({ onComplete }: LoaderProps) {
       {/* Pulsing dot */}
       <div
         ref={dotRef}
-        className="w-3 h-3 rounded-full bg-white mb-12"
-        style={{ boxShadow: "0 0 30px rgba(255,255,255,0.5)" }}
+        className="w-3 h-3 rounded-full bg-[#FFFBF4] mb-12"
+        style={{ boxShadow: "0 0 30px rgba(255,251,244,0.5)" }}
       />
 
       {/* Progress bar */}
-      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-[100px] h-px bg-white/10 overflow-hidden">
-        <div ref={progressRef} className="h-full bg-white/40 w-0" />
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-[100px] h-px bg-[#FFFBF4]/10 overflow-hidden">
+        <div ref={progressRef} className="h-full bg-[#FFFBF4]/40 w-0" />
       </div>
 
       {/* White circle for dramatic reveal — starts scale(0), expands to cover viewport */}
       <div
         ref={circleRef}
-        className="absolute left-1/2 top-1/2 w-[200vmax] h-[200vmax] rounded-full bg-white pointer-events-none"
+        className="absolute left-1/2 top-1/2 w-[200vmax] h-[200vmax] rounded-full bg-[#FFFBF4] pointer-events-none"
         style={{ transform: "translate(-50%, -50%) scale(0)" }}
       />
     </div>

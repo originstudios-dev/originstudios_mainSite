@@ -77,7 +77,7 @@ export function SourceReveal({
   const overlay = (
     <div
       ref={overlayRef}
-      className="fixed inset-0 pointer-events-none bg-white text-[#0a0a0a]"
+      className="fixed inset-0 pointer-events-none bg-[#FFFBF4] text-[#11120D]"
       style={{
         zIndex: 9998,
         visibility: "hidden",

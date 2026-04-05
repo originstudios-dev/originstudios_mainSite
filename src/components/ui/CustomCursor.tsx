@@ -63,7 +63,7 @@ export function CustomCursor() {
       style={{
         width: 10,
         height: 10,
-        backgroundColor: "#fff",
+        backgroundColor: "#FFFBF4",
         opacity: 0.9,
         willChange: "transform",
         transition: "width 200ms, height 200ms, opacity 200ms, mix-blend-mode 200ms",

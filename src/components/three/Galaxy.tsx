@@ -16,10 +16,10 @@ function createStarTexture(): THREE.Texture {
   const ctx = canvas.getContext("2d")!;
   const center = size / 2;
   const gradient = ctx.createRadialGradient(center, center, 0, center, center, center);
-  gradient.addColorStop(0, "rgba(255,255,255,1)");
-  gradient.addColorStop(0.12, "rgba(255,255,255,0.8)");
-  gradient.addColorStop(0.35, "rgba(255,255,255,0.15)");
-  gradient.addColorStop(1, "rgba(255,255,255,0)");
+  gradient.addColorStop(0, "rgba(216,207,188,1)");
+  gradient.addColorStop(0.12, "rgba(216,207,188,0.8)");
+  gradient.addColorStop(0.35, "rgba(216,207,188,0.15)");
+  gradient.addColorStop(1, "rgba(216,207,188,0)");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, size, size);
   const tex = new THREE.CanvasTexture(canvas);

@@ -3,82 +3,74 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { gsap, ScrollTrigger } from "@/lib/registry";
 
-const LETTERS = "ORIGINSTUDIOS".split("");
-
-function ReactiveChar({ char, index }: { char: string; index: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const [hovered, setHovered] = useState(false);
-
-  const onEnter = useCallback(() => {
-    setHovered(true);
-    const el = ref.current;
-    if (!el) return;
-    gsap.to(el, {
-      y: -15,
-      scale: 1.1,
-      duration: 0.2,
-      ease: "back.out(3)",
-    });
-  }, []);
-
-  const onLeave = useCallback(() => {
-    setHovered(false);
-    const el = ref.current;
-    if (!el) return;
-    gsap.to(el, {
-      y: 0,
-      scale: 1,
-      duration: 0.4,
-      ease: "elastic.out(1, 0.5)",
-    });
-  }, []);
-
-  // Add space after ORIGIN (index 5 → 6 gap)
-  const isSpace = index === 6;
-
-  return (
-    <>
-      {isSpace && <span className="inline-block w-[2vw] md:w-[1.5vw]" />}
-      <span
-        ref={ref}
-        onMouseEnter={onEnter}
-        onMouseLeave={onLeave}
-        data-cursor="expand"
-        className="inline-block select-none will-change-transform"
-        style={{
-          color: hovered ? "#565449" : "transparent",
-          WebkitTextStroke: hovered ? "0px" : "1px rgba(86,84,73,0.2)",
-          textShadow: hovered
-            ? "0 0 30px rgba(86,84,73,0.4), 0 5px 20px rgba(86,84,73,0.1)"
-            : "none",
-          transition: "color 0.2s, -webkit-text-stroke 0.2s",
-        }}
-      >
-        {char}
-      </span>
-    </>
-  );
-}
-
 export function BigLogo() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const charsRef = useRef<HTMLDivElement>(null);
+  const originRef = useRef<HTMLSpanElement>(null);
+  const studiosRef = useRef<HTMLSpanElement>(null);
+  const [originHovered, setOriginHovered] = useState(false);
+  const [studiosHovered, setStudiosHovered] = useState(false);
+
+  const onOriginEnter = useCallback(() => {
+    setOriginHovered(true);
+    if (originRef.current) {
+      gsap.to(originRef.current, {
+        y: -10,
+        scale: 1.05,
+        duration: 0.3,
+        ease: "back.out(2)",
+      });
+    }
+  }, []);
+
+  const onOriginLeave = useCallback(() => {
+    setOriginHovered(false);
+    if (originRef.current) {
+      gsap.to(originRef.current, {
+        y: 0,
+        scale: 1,
+        duration: 0.5,
+        ease: "elastic.out(1, 0.5)",
+      });
+    }
+  }, []);
+
+  const onStudiosEnter = useCallback(() => {
+    setStudiosHovered(true);
+    if (studiosRef.current) {
+      gsap.to(studiosRef.current, {
+        y: -10,
+        scale: 1.05,
+        duration: 0.3,
+        ease: "back.out(2)",
+      });
+    }
+  }, []);
+
+  const onStudiosLeave = useCallback(() => {
+    setStudiosHovered(false);
+    if (studiosRef.current) {
+      gsap.to(studiosRef.current, {
+        y: 0,
+        scale: 1,
+        duration: 0.5,
+        ease: "elastic.out(1, 0.5)",
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const el = containerRef.current;
-    const chars = charsRef.current;
-    if (!el || !chars) return;
+    if (!el) return;
 
-    // Stagger each letter in on scroll
-    const letters = chars.querySelectorAll("span[data-cursor]");
+    const words = el.querySelectorAll("[data-word]");
     gsap.fromTo(
-      letters,
-      { opacity: 0, y: 30 },
+      words,
+      { opacity: 0, y: 40 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.6,
-        stagger: 0.04,
+        duration: 0.8,
+        stagger: 0.15,
         ease: "power3.out",
         scrollTrigger: {
           trigger: el,
@@ -92,16 +84,44 @@ export function BigLogo() {
   return (
     <div
       ref={containerRef}
-      className="relative py-16 md:py-20 px-4 border-t border-white/[0.03]"
+      className="relative py-20 md:py-28 px-4 border-t border-[#D8CFBC]/[0.03]"
     >
-      <div
-        ref={charsRef}
-        className="flex justify-center items-center flex-wrap"
-      >
-        <span className="font-clash font-bold uppercase tracking-tight leading-none text-[7vw] sm:text-[6vw] md:text-[5vw]">
-          {LETTERS.map((char, i) => (
-            <ReactiveChar key={i} char={char} index={i} />
-          ))}
+      <div className="flex justify-center items-center gap-[2vw] md:gap-[1.5vw]">
+        <span
+          ref={originRef}
+          data-word
+          data-cursor="expand"
+          onMouseEnter={onOriginEnter}
+          onMouseLeave={onOriginLeave}
+          className="font-clash font-bold uppercase tracking-tight leading-none text-[10vw] sm:text-[9vw] md:text-[8vw] inline-block select-none will-change-transform cursor-none"
+          style={{
+            color: originHovered ? "#D8CFBC" : "transparent",
+            WebkitTextStroke: originHovered ? "0px" : "1.5px rgba(216,207,188,0.2)",
+            textShadow: originHovered
+              ? "0 0 40px rgba(216,207,188,0.35), 0 5px 25px rgba(216,207,188,0.1)"
+              : "none",
+            transition: "color 0.3s, -webkit-text-stroke 0.3s, text-shadow 0.3s",
+          }}
+        >
+          ORIGIN
+        </span>
+        <span
+          ref={studiosRef}
+          data-word
+          data-cursor="expand"
+          onMouseEnter={onStudiosEnter}
+          onMouseLeave={onStudiosLeave}
+          className="font-clash font-bold uppercase tracking-tight leading-none text-[10vw] sm:text-[9vw] md:text-[8vw] inline-block select-none will-change-transform cursor-none"
+          style={{
+            color: studiosHovered ? "#D8CFBC" : "transparent",
+            WebkitTextStroke: studiosHovered ? "0px" : "1.5px rgba(216,207,188,0.2)",
+            textShadow: studiosHovered
+              ? "0 0 40px rgba(216,207,188,0.35), 0 5px 25px rgba(216,207,188,0.1)"
+              : "none",
+            transition: "color 0.3s, -webkit-text-stroke 0.3s, text-shadow 0.3s",
+          }}
+        >
+          STUDIOS
         </span>
       </div>
     </div>

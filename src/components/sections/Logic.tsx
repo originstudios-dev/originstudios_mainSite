@@ -92,7 +92,7 @@ function StatCounter({
         className="pointer-events-none absolute top-4 left-1/4 -translate-x-1/2 w-56 h-56 rounded-full"
         style={{
           background:
-            "radial-gradient(circle, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(216,207,188,0.06) 0%, rgba(216,207,188,0.02) 40%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
@@ -105,7 +105,7 @@ function StatCounter({
         >
           0
         </span>
-        <span className="font-clash text-3xl md:text-5xl font-bold" style={{ color: "#c9a87c" }}>
+        <span className="font-clash text-3xl md:text-5xl font-bold" style={{ color: "#D8CFBC" }}>
           {suffix}
         </span>
       </div>
@@ -116,19 +116,19 @@ function StatCounter({
         className="h-px w-full origin-left"
         style={{
           transform: "scaleX(0)",
-          background: "linear-gradient(90deg, rgba(255,255,255,0.3), rgba(255,255,255,0.05))",
+          background: "linear-gradient(90deg, rgba(216,207,188,0.3), rgba(216,207,188,0.05))",
         }}
       />
 
       {/* Label — uppercase, tracked, smaller */}
-      <span className="font-satoshi text-[11px] md:text-xs font-semibold text-white/80 tracking-[0.2em] uppercase">
+      <span className="font-satoshi text-xs md:text-sm font-semibold text-[#FFFBF4]/80 tracking-[0.2em] uppercase">
         {label}
       </span>
 
       {/* Explanation — fades in delayed */}
       <p
         ref={explRef}
-        className="font-satoshi text-xs md:text-sm text-muted leading-relaxed opacity-0"
+        className="font-satoshi text-sm md:text-base text-[#FFFBF4]/50 leading-relaxed opacity-0"
       >
         {explanation}
       </p>
@@ -159,8 +159,8 @@ export function Logic() {
     <section className="relative z-10 py-32 md:py-48 px-8 md:px-16 max-w-7xl mx-auto">
       {/* Section label */}
       <ScrollReveal>
-        <span className="font-satoshi text-xs text-label tracking-[0.2em] uppercase">
-          02 — Why most websites fail in 2026
+        <span className="font-satoshi text-sm text-[#FFFBF4]/60 tracking-[0.2em] uppercase">
+          02 / Why most websites fail in 2026
         </span>
       </ScrollReveal>
 
@@ -180,7 +180,7 @@ export function Logic() {
         style={{
           transform: "scaleX(0)",
           background:
-            "linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05))",
+            "linear-gradient(90deg, rgba(216,207,188,0.15), rgba(216,207,188,0.05))",
         }}
       />
 
@@ -201,8 +201,8 @@ export function Logic() {
 
       {/* Pivot line — pull-quote style */}
       <ScrollReveal delay={0.3} className="mt-20 md:mt-24">
-        <div className="border-t border-b border-white/10 py-8 md:py-10 max-w-2xl mx-auto">
-          <p className="font-satoshi text-base md:text-lg font-bold text-center text-white/90 leading-snug">
+        <div className="border-t border-b border-[#D8CFBC]/10 py-8 md:py-10 max-w-2xl mx-auto">
+          <p className="font-satoshi text-base md:text-lg font-bold text-center text-[#FFFBF4]/90 leading-snug">
             This is not a Google penalty. It&apos;s a platform shift. Those
             don&apos;t reverse.
           </p>

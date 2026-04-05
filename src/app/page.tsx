@@ -17,6 +17,8 @@ import { FinalCall } from "@/components/sections/FinalCall";
 import { useLenis } from "@/lib/hooks/useLenis";
 import { BigLogo } from "@/components/ui/BigLogo";
 import { ScrollLine } from "@/components/ui/ScrollLine";
+import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
+import { CursorReveal } from "@/components/ui/CursorReveal";
 import { gsap, ScrollTrigger } from "@/lib/registry";
 
 function HorizontalScrollSection({ children }: { children: React.ReactNode }) {
@@ -97,6 +99,7 @@ export default function Home() {
           <CustomCursor />
           <Particles />
           <ScrollLine />
+          <AmbientOrbs />
 
           <Navbar />
           <main className="text-primary">
@@ -108,7 +111,7 @@ export default function Home() {
             <WavePath className="px-8 md:px-16" />
             <VelocityMarquee
               text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
-              className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
+              className="font-clash text-xl md:text-2xl font-bold uppercase text-[#D8CFBC] tracking-widest"
               baseVelocity={30}
             />
             <RevealSection>
@@ -118,17 +121,38 @@ export default function Home() {
             <WavePath className="px-8 md:px-16" />
             <VelocityMarquee
               text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
-              className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
+              className="font-clash text-xl md:text-2xl font-bold uppercase text-[#D8CFBC] tracking-widest"
               baseVelocity={30}
             />
             <RevealSection>
               <Comparison />
             </RevealSection>
 
+            {/* Pull-quote with cursor reveal */}
+            <RevealSection>
+              <div className="py-20 md:py-28 px-8 md:px-16 max-w-5xl mx-auto text-center">
+                <CursorReveal
+                  revealBg="#D8CFBC"
+                  revealRadius={200}
+                  base={
+                    <p className="font-clash text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#565449] leading-snug">
+                      The gap between a website and a system is the gap between being found and being forgotten.
+                    </p>
+                  }
+                  revealed={
+                    <p className="font-clash text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#11120D] leading-snug">
+                      Your agency uses WordPress and calls it &ldquo;custom.&rdquo; We write every line from scratch and call it Tuesday. Origin Studios go brr.
+                    </p>
+                  }
+                />
+                <span className="inline-block mt-6 h-px w-16 bg-[#565449]/30" />
+              </div>
+            </RevealSection>
+
             <WavePath className="px-8 md:px-16" />
             <VelocityMarquee
               text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
-              className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
+              className="font-clash text-xl md:text-2xl font-bold uppercase text-[#D8CFBC] tracking-widest"
               baseVelocity={30}
             />
             <HorizontalScrollSection>
@@ -138,17 +162,37 @@ export default function Home() {
             <WavePath className="px-8 md:px-16" />
             <VelocityMarquee
               text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
-              className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
+              className="font-clash text-xl md:text-2xl font-bold uppercase text-[#D8CFBC] tracking-widest"
               baseVelocity={30}
             />
             <RevealSection>
               <Methodology />
             </RevealSection>
 
+            {/* Stats strip, tight under methodology */}
+            <div className="pb-16 md:pb-24 px-8 md:px-16 max-w-7xl mx-auto">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-12 sm:gap-20">
+                {[
+                  { value: "8", label: "Week delivery" },
+                  { value: "95+", label: "Lighthouse score" },
+                  { value: "0", label: "Templates used" },
+                ].map((stat) => (
+                  <div key={stat.label} className="text-center">
+                    <span className="font-clash text-5xl md:text-6xl font-bold text-[#D8CFBC]">
+                      {stat.value}
+                    </span>
+                    <p className="font-satoshi text-sm text-[#FFFBF4]/50 mt-2 tracking-wide uppercase">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <WavePath className="px-8 md:px-16" />
             <VelocityMarquee
               text="STRATEGY · DESIGN · BUILD · MOTION · GEO · OPTIMIZE ·"
-              className="font-clash text-xl md:text-2xl font-bold uppercase text-white/[0.04] tracking-widest"
+              className="font-clash text-xl md:text-2xl font-bold uppercase text-[#D8CFBC] tracking-widest"
               baseVelocity={30}
             />
             <RevealSection>

@@ -75,7 +75,7 @@ export function WavePath({ className = "" }: { className?: string }) {
       <svg className="absolute -top-[100px] h-[300px] w-full">
         <path
           ref={pathRef}
-          className="fill-none stroke-white/[0.08]"
+          className="fill-none stroke-[#D8CFBC]/[0.08]"
           strokeWidth={2}
         />
       </svg>

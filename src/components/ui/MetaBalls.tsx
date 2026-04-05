@@ -24,8 +24,8 @@ interface Ball {
 }
 
 export default function MetaBalls({
-  color = "#ffffff",
-  cursorBallColor = "#ffffff",
+  color = "#D8CFBC",
+  cursorBallColor = "#D8CFBC",
   cursorBallSize = 2,
   ballCount = 15,
   animationSize = 30,

@@ -16,11 +16,11 @@
 
 @theme {
   --color-bg: #11120D;
-  --color-primary: #ffffff;
-  --color-body: #888888;
-  --color-label: #666666;
-  --color-muted: #444444;
-  --color-subtle: #222222;
+  --color-primary: #FFFBF4;
+  --color-body: #D8CFBC;
+  --color-label: #565449;
+  --color-muted: #3d3b32;
+  --color-subtle: #252419;
 
   --font-clash: "Clash Display", sans-serif;
   --font-satoshi: "Satoshi", sans-serif;
@@ -39,8 +39,8 @@ body {
 }
 
 ::selection {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  background: rgba(216, 207, 188, 0.2);
+  color: #FFFBF4;
 }
 
 @media (min-width: 768px) {
@@ -87,7 +87,7 @@ body {
 }
 
 .text-glow {
-  text-shadow: 0 0 40px rgba(255,255,255,0.1), 0 0 80px rgba(255,255,255,0.05);
+  text-shadow: 0 0 40px rgba(255,251,244,0.1), 0 0 80px rgba(255,251,244,0.05);
 }
 
 @keyframes drawLine {
@@ -96,7 +96,7 @@ body {
 }
 
 .gradient-border {
-  background: conic-gradient(from var(--gradient-angle), transparent 25%, var(--border-color, rgba(255,255,255,0.1)) 50%, transparent 75%);
+  background: conic-gradient(from var(--gradient-angle), transparent 25%, var(--border-color, rgba(216,207,188,0.1)) 50%, transparent 75%);
 }
 
 .gradient-border:hover {
@@ -118,7 +118,7 @@ body {
   left: 0;
   width: 0;
   height: 1px;
-  background: white;
+  background: #FFFBF4;
   transition: width 0.3s ease;
 }
 .hover-underline:hover::after {

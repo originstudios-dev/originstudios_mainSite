@@ -83,7 +83,7 @@ export function Comparison() {
       className="relative py-32 md:py-40 px-8 md:px-16 max-w-7xl mx-auto"
     >
       {/* ── Header ── */}
-      <span className="font-satoshi text-xs text-label tracking-[0.2em] uppercase">
+      <span className="font-satoshi text-sm text-[#FFFBF4]/60 tracking-[0.2em] uppercase">
         The stack
       </span>
       <h2 className="font-clash text-4xl md:text-6xl font-bold uppercase tracking-tight mt-6">
@@ -94,11 +94,11 @@ export function Comparison() {
 
       {/* ── Column labels ── */}
       <div className="mt-16 flex items-center gap-4 pb-4">
-        <span className="w-[40%] font-satoshi text-xs text-muted font-semibold tracking-wide uppercase text-right pr-6">
+        <span className="w-[40%] font-satoshi text-sm text-[#FFFBF4]/50 font-semibold tracking-wide uppercase text-right pr-6">
           What they use
         </span>
         <span className="w-[20%]" />
-        <span className="w-[40%] font-satoshi text-xs tracking-wide uppercase pl-6 font-semibold" style={{ color: "#565449" }}>
+        <span className="w-[40%] font-satoshi text-sm tracking-wide uppercase pl-6 font-bold" style={{ color: "#FFFBF4" }}>
           What we use
         </span>
       </div>
@@ -112,7 +112,7 @@ export function Comparison() {
               key={row.they}
               ref={(el) => { rowsRef.current[i] = el; }}
               data-cursor="expand"
-              className="group relative flex items-center border-b border-white/5 cursor-pointer"
+              className="group relative flex items-center border-b border-[#D8CFBC]/5 cursor-pointer"
               style={{ opacity: 0 }}
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -121,7 +121,7 @@ export function Comparison() {
               <div className="relative w-[40%] py-7 pr-6 flex justify-end">
                 <span
                   className="relative font-satoshi text-sm md:text-base font-medium transition-colors duration-300"
-                  style={{ color: isHovered ? "#ef4444" : "#777" }}
+                  style={{ color: isHovered ? "#ef4444" : "#D8CFBC" }}
                 >
                   {row.they}
                   {/* Animated red strikethrough */}
@@ -142,7 +142,7 @@ export function Comparison() {
                   className="w-[1px] h-full origin-top"
                   style={{
                     background:
-                      "linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.25) 30%, rgba(255,255,255,0.25) 70%, transparent 100%)",
+                      "linear-gradient(180deg, transparent 0%, rgba(216,207,188,0.25) 30%, rgba(216,207,188,0.25) 70%, transparent 100%)",
                   }}
                 />
               </div>
@@ -150,11 +150,11 @@ export function Comparison() {
               {/* ── Right side: "We" ── */}
               <div className="w-[40%] py-7 pl-6">
                 <span
-                  className="font-satoshi text-sm md:text-base font-semibold transition-all duration-300"
+                  className="font-satoshi text-sm md:text-base font-bold transition-all duration-300"
                   style={{
-                    color: "#565449",
+                    color: "#FFFBF4",
                     textShadow: isHovered
-                      ? "0 0 20px rgba(86,84,73,0.4), 0 0 40px rgba(86,84,73,0.15)"
+                      ? "0 0 20px rgba(255,251,244,0.3), 0 0 40px rgba(255,251,244,0.1)"
                       : "none",
                   }}
                 >
@@ -168,7 +168,7 @@ export function Comparison() {
                 style={{
                   opacity: isHovered ? 1 : 0,
                   background:
-                    "linear-gradient(90deg, rgba(239,68,68,0.04) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.04) 100%)",
+                    "linear-gradient(90deg, rgba(239,68,68,0.04) 0%, transparent 40%, transparent 60%, rgba(216,207,188,0.04) 100%)",
                 }}
               />
 
@@ -182,7 +182,7 @@ export function Comparison() {
                     : "translateX(-50%) translateY(-4px)",
                 }}
               >
-                <span className="inline-block font-satoshi text-[11px] tracking-wide text-white/60 bg-white/[0.06] backdrop-blur-sm border border-white/10 rounded-full px-4 py-1.5 whitespace-nowrap">
+                <span className="inline-block font-satoshi text-xs tracking-wide text-[#FFFBF4]/60 bg-[#D8CFBC]/[0.06] backdrop-blur-sm border border-[#D8CFBC]/10 rounded-full px-4 py-1.5 whitespace-nowrap">
                   {row.gap}
                 </span>
               </div>

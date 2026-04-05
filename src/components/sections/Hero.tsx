@@ -147,7 +147,7 @@ export function Hero() {
         {/* Kicker */}
         <p
           data-animate
-          className="font-satoshi text-xs font-medium tracking-widest uppercase text-body/50"
+          className="font-satoshi text-sm font-medium tracking-widest uppercase text-[#FFFBF4]/50"
         >
           Web Studio · Est. 2026
         </p>
@@ -158,7 +158,9 @@ export function Hero() {
             ref={headline1Ref}
             className="font-clash text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[0.95]"
           >
-            {charSpans("We Don\u2019t Just Build ", "char-l1")}
+            {charSpans("We Don\u2019t Just Build", "char-l1")}
+          </h1>
+          <h1 className="font-clash text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[0.95]">
             <span
               className="inline-block transition-all duration-300"
               style={{
@@ -185,7 +187,7 @@ export function Hero() {
           className="font-satoshi text-sm md:text-base lg:text-lg text-body leading-relaxed max-w-md"
         >
           {wordSpans(
-            "Strategy that shapes. Design that converts. Architecture that gets cited by AI. Every piece — one compounding system."
+            "Strategy that shapes. Design that converts. Architecture that gets cited by AI. Every piece, one compounding system."
           )}
         </p>
 
@@ -194,7 +196,7 @@ export function Hero() {
           <a
             href="#work"
             data-cursor="expand"
-            className="inline-block font-satoshi text-sm font-medium bg-white text-[#0a0a0a] px-6 py-3 hover:bg-white/90 transition-colors"
+            className="inline-block font-satoshi text-sm font-medium bg-[#FFFBF4] text-[#11120D] px-6 py-3 hover:bg-[#D8CFBC] transition-colors"
           >
             See Our Work →
           </a>
@@ -209,7 +211,7 @@ export function Hero() {
         {/* Trust bar */}
         <p
           data-animate
-          className="font-satoshi text-xs text-body/40 tracking-wide"
+          className="font-satoshi text-sm text-[#FFFBF4]/40 tracking-wide"
         >
           Strategy-First · Motion &amp; 3D · AI-Optimised ·
           Performance-Obsessed · Marketing-Wired

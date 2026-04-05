@@ -29,7 +29,7 @@ function MagneticScrambleLink({
   const textRef = useRef<HTMLAnchorElement>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const hovering = useRef(false);
-  const [color, setColor] = useState("#0a0a0a");
+  const [color, setColor] = useState("#11120D");
 
   // Magnetic: move only the inner text, not the container
   const onMouseMove = useCallback((e: React.MouseEvent) => {
@@ -52,7 +52,7 @@ function MagneticScrambleLink({
     }
     if (intervalRef.current) clearInterval(intervalRef.current);
     hovering.current = false;
-    setColor("#0a0a0a");
+    setColor("#11120D");
   }, [label]);
 
   const onMouseEnter = useCallback(() => {
@@ -156,9 +156,9 @@ export function Navbar() {
       <div className="relative flex items-center gap-4 sm:gap-6 md:gap-10 px-5 sm:px-6 md:px-8 py-2.5 md:py-3">
         {/* Breathing pill shell */}
         <div
-          className="absolute inset-0 backdrop-blur-md border border-[#e8e4df]/20 animate-[navBreathe_4s_ease-in-out_infinite]"
+          className="absolute inset-0 backdrop-blur-md border border-[#D8CFBC]/20 animate-[navBreathe_4s_ease-in-out_infinite]"
           style={{
-            backgroundColor: "rgba(232, 228, 223, 0.88)",
+            backgroundColor: "rgba(255, 251, 244, 0.88)",
             borderRadius: "24px 8px 24px 8px",
             boxShadow: "0 4px 24px rgba(0,0,0,0.12)",
             zIndex: -1,
@@ -174,10 +174,10 @@ export function Navbar() {
         {/* Center wordmark */}
         <a
           href="#"
-          className="font-clash font-bold text-[#0a0a0a] tracking-[0.15em] md:tracking-[0.2em] uppercase whitespace-nowrap"
+          className="font-clash font-bold text-[#11120D] tracking-[0.15em] md:tracking-[0.2em] uppercase whitespace-nowrap"
         >
           <span className="text-lg sm:text-xl md:text-2xl">Origin</span>
-          <span className="text-[9px] sm:text-[10px] md:text-xs ml-1 md:ml-1.5 font-medium tracking-[0.25em] md:tracking-[0.3em] text-[#0a0a0a]/60">
+          <span className="text-[9px] sm:text-[10px] md:text-xs ml-1 md:ml-1.5 font-medium tracking-[0.25em] md:tracking-[0.3em] text-[#11120D]/60">
             Studios
           </span>
         </a>
@@ -194,8 +194,8 @@ export function Navbar() {
           className="md:hidden flex flex-col gap-1.5 p-2"
           aria-label="Open menu"
         >
-          <span className="block w-5 h-px bg-[#0a0a0a]" />
-          <span className="block w-5 h-px bg-[#0a0a0a]" />
+          <span className="block w-5 h-px bg-[#11120D]" />
+          <span className="block w-5 h-px bg-[#11120D]" />
         </button>
       </div>
     </nav>
