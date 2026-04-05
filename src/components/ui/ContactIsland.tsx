@@ -42,12 +42,14 @@ export function ContactIsland() {
     const form = e.currentTarget;
     const data = new FormData(form);
     const name = data.get("name") as string;
+    const email = data.get("email") as string;
+    const phone = data.get("phone") as string;
     const requirement = data.get("requirement") as string;
     const details = data.get("build") as string;
 
     const { error: insertError } = await supabase
       .from("contact_submissions")
-      .insert({ name, requirement, details });
+      .insert({ name, email, phone, requirement, details });
 
     if (insertError) {
       setError(true);
@@ -117,6 +119,37 @@ export function ContactIsland() {
                   type="text"
                   required
                   placeholder="John Doe"
+                  className="mt-1.5 w-full bg-transparent border-b border-[#D8CFBC]/20 focus:border-[#D8CFBC] outline-none py-2 font-satoshi text-sm text-[#FFFBF4] placeholder:text-[#565449] transition-colors"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="ci-email"
+                  className="font-satoshi text-xs text-[#D8CFBC]/60 uppercase tracking-widest"
+                >
+                  Email
+                </label>
+                <input
+                  id="ci-email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="you@company.com"
+                  className="mt-1.5 w-full bg-transparent border-b border-[#D8CFBC]/20 focus:border-[#D8CFBC] outline-none py-2 font-satoshi text-sm text-[#FFFBF4] placeholder:text-[#565449] transition-colors"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="ci-phone"
+                  className="font-satoshi text-xs text-[#D8CFBC]/60 uppercase tracking-widest"
+                >
+                  Phone (optional)
+                </label>
+                <input
+                  id="ci-phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+91 98765 43210"
                   className="mt-1.5 w-full bg-transparent border-b border-[#D8CFBC]/20 focus:border-[#D8CFBC] outline-none py-2 font-satoshi text-sm text-[#FFFBF4] placeholder:text-[#565449] transition-colors"
                 />
               </div>
