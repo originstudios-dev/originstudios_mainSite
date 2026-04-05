@@ -1,7 +1,6 @@
 "use client";
 
 const footerLinks = [
-  { label: "Work", target: "work" },
   { label: "Services", target: "services" },
   { label: "Process", target: "method" },
   { label: "Contact", target: "contact" },
