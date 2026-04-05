@@ -9,6 +9,10 @@ const MetaBalls = dynamic(() => import("@/components/ui/MetaBalls"), {
   ssr: false,
 });
 
+const StickerRain = dynamic(
+  () => import("@/components/ui/StickerRain").then((mod) => ({ default: mod.StickerRain })),
+  { ssr: false }
+);
 
 export function FinalCall() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -65,10 +69,15 @@ export function FinalCall() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative min-h-screen py-32 md:py-40 px-8 md:px-16 max-w-7xl mx-auto overflow-hidden flex items-center"
+      className="relative min-h-screen py-32 md:py-40 flex items-center"
     >
-      {/* MetaBalls background */}
-      <div className="absolute inset-0 z-0 opacity-20">
+      {/* Sticker rain - full viewport width, no clipping */}
+      <div className="absolute inset-0 z-0">
+        <StickerRain />
+      </div>
+
+      {/* MetaBalls background - constrained to content width */}
+      <div className="absolute inset-0 z-[1] opacity-20 max-w-7xl mx-auto">
         <MetaBalls
           color="#D8CFBC"
           cursorBallColor="#D8CFBC"
@@ -83,17 +92,17 @@ export function FinalCall() {
         />
       </div>
 
-
       {/* Gradient top border */}
       <div
-        className="absolute top-0 left-0 w-full h-px"
+        className="absolute top-0 left-0 w-full h-px z-[2]"
         style={{
           background:
             "linear-gradient(90deg, transparent 0%, rgba(216,207,188,0.10) 50%, transparent 100%)",
         }}
       />
 
-      <div className="relative z-10 w-full">
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-16">
         <span
           data-animate
           className="font-satoshi text-sm text-[#FFFBF4]/70 tracking-[0.2em] uppercase"
