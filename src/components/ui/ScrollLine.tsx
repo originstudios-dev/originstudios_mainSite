@@ -207,7 +207,7 @@ export function ScrollLine() {
           stroke="rgba(216,207,188,0.06)"
           strokeWidth={12}
           strokeLinecap="round"
-          style={{ filter: "blur(8px)" }}
+          style={{ opacity: 0.5 }}
         />
       ))}
       {/* Main lines — stroke */}
@@ -228,7 +228,7 @@ export function ScrollLine() {
           stroke="rgba(216,207,188,0.04)"
           strokeWidth={8}
           strokeLinecap="round"
-          style={{ filter: "blur(5px)" }}
+          style={{ opacity: 0.5 }}
         />
       ))}
       {/* Branch lines — stroke */}

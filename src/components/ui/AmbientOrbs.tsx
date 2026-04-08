@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/registry";
 
 /**
@@ -10,12 +10,18 @@ import { gsap, ScrollTrigger } from "@/lib/registry";
 export function AmbientOrbs() {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
     // Skip on mobile for performance
-    if (window.innerWidth < 768) return;
+    if (isMobile) return;
 
     const orbs = el.querySelectorAll("[data-orb]");
     const crosses = el.querySelectorAll("[data-cross]");
@@ -63,7 +69,9 @@ export function AmbientOrbs() {
         delay: i * 0.3,
       });
     });
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) return null;
 
   return (
     <div

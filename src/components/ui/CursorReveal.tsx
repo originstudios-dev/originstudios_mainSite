@@ -20,15 +20,12 @@ export function CursorReveal({
   const containerRef = useRef<HTMLDivElement>(null);
   const revealRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [tapped, setTapped] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const onResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    setIsMobile(window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768);
   }, []);
 
+  // ── Desktop: cursor-following spotlight ──
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (isMobile) return;
@@ -50,28 +47,9 @@ export function CursorReveal({
     rev.style.clipPath = "circle(0px at 50% 50%)";
   }, [isMobile]);
 
+  // ── Mobile: scroll-triggered breathing reveal ──
   if (isMobile) {
-    return (
-      <div className={className}>
-        {/* Show one or the other, no absolute positioning */}
-        {!tapped ? (
-          <div>{base}</div>
-        ) : (
-          <div
-            className="rounded-xl px-4 py-6"
-            style={{ background: revealBg }}
-          >
-            {revealed}
-          </div>
-        )}
-        <button
-          onClick={() => setTapped((t) => !t)}
-          className="mt-5 font-satoshi text-xs font-medium tracking-widest uppercase px-5 py-2.5 rounded-full border border-[#D8CFBC]/30 text-[#D8CFBC] active:bg-[#D8CFBC]/10 transition-colors mx-auto block"
-        >
-          {tapped ? "Show original" : "Tap to reveal"}
-        </button>
-      </div>
-    );
+    return <MobileReveal base={base} revealed={revealed} revealBg={revealBg} className={className} />;
   }
 
   return (
@@ -99,6 +77,118 @@ export function CursorReveal({
       >
         {revealed}
       </div>
+    </div>
+  );
+}
+
+/**
+ * Mobile: When the section scrolls into view, a circle expands from center
+ * to reveal the alternate text, holds, then contracts back. Pure CSS
+ * transitions driven by IntersectionObserver — zero RAF overhead.
+ */
+function MobileReveal({
+  base,
+  revealed,
+  revealBg,
+  className,
+}: {
+  base: React.ReactNode;
+  revealed: React.ReactNode;
+  revealBg: string;
+  className: string;
+}) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [phase, setPhase] = useState<"hidden" | "revealing" | "revealed" | "hiding">("hidden");
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Small delay so the user sees the base text first
+          timeoutRef.current = setTimeout(() => {
+            setPhase("revealing");
+            // Hold the reveal
+            timeoutRef.current = setTimeout(() => {
+              setPhase("revealed");
+              // Begin contracting
+              timeoutRef.current = setTimeout(() => {
+                setPhase("hiding");
+                // Reset for next scroll
+                timeoutRef.current = setTimeout(() => {
+                  setPhase("hidden");
+                }, 800);
+              }, 2000);
+            }, 800);
+          }, 400);
+        } else {
+          // Reset when out of view so it re-triggers on next scroll
+          if (timeoutRef.current) clearTimeout(timeoutRef.current);
+          setPhase("hidden");
+        }
+      },
+      { threshold: 0.6 }
+    );
+
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+  // Map phase to clip-path radius
+  const isOpen = phase === "revealing" || phase === "revealed";
+  const clipRadius = isOpen ? "120%" : "0%";
+
+  return (
+    <div ref={sectionRef} className={`relative overflow-hidden ${className}`}>
+      {/* Base text — always rendered */}
+      <div
+        style={{
+          transition: "opacity 0.6s ease",
+          opacity: isOpen ? 0.3 : 1,
+        }}
+      >
+        {base}
+      </div>
+
+      {/* Revealed text — clip-path circle expands from center */}
+      <div
+        className="absolute inset-0 flex items-center justify-center rounded-2xl"
+        style={{
+          background: revealBg,
+          clipPath: `circle(${clipRadius} at 50% 50%)`,
+          transition: "clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+          padding: "1.5rem",
+        }}
+      >
+        <div
+          style={{
+            transition: "opacity 0.4s ease 0.2s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s",
+            opacity: isOpen ? 1 : 0,
+            transform: isOpen ? "scale(1)" : "scale(0.95)",
+          }}
+        >
+          {revealed}
+        </div>
+      </div>
+
+      {/* Subtle hint line that pulses before reveal */}
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2"
+        style={{
+          width: phase === "hidden" ? 24 : 0,
+          height: 2,
+          borderRadius: 1,
+          background: "rgba(216,207,188,0.3)",
+          transition: "width 0.4s ease, opacity 0.3s ease",
+          opacity: phase === "hidden" ? 1 : 0,
+        }}
+      />
     </div>
   );
 }

@@ -2,13 +2,23 @@
 
 import { useRef, useMemo, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
-import * as THREE from "three";
+import {
+  Group,
+  Points,
+  BufferGeometry,
+  Float32BufferAttribute,
+  PointsMaterial,
+  CanvasTexture,
+  Texture,
+  AdditiveBlending,
+  BufferAttribute,
+} from "three";
 
 const STAR_COUNT = 8000;
 const DUST_COUNT = 400;
 const SCALE = 4.0;
 
-function createStarTexture(): THREE.Texture {
+function createStarTexture(): Texture {
   const size = 64;
   const canvas = document.createElement("canvas");
   canvas.width = size;
@@ -22,7 +32,7 @@ function createStarTexture(): THREE.Texture {
   gradient.addColorStop(1, "rgba(216,207,188,0)");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, size, size);
-  const tex = new THREE.CanvasTexture(canvas);
+  const tex = new CanvasTexture(canvas);
   tex.needsUpdate = true;
   return tex;
 }
@@ -36,9 +46,9 @@ function lemniscate(t: number, a: number) {
 }
 
 export function Galaxy({ opacity = 1 }: { opacity?: number }) {
-  const groupRef = useRef<THREE.Group>(null);
-  const starsRef = useRef<THREE.Points>(null);
-  const dustRef = useRef<THREE.Points>(null);
+  const groupRef = useRef<Group>(null);
+  const starsRef = useRef<Points>(null);
+  const dustRef = useRef<Points>(null);
 
   const starTexture = useMemo(() => {
     if (typeof document === "undefined") return null;
@@ -112,45 +122,45 @@ export function Galaxy({ opacity = 1 }: { opacity?: number }) {
 
   // Build geometries
   const starsGeo = useMemo(() => {
-    const geo = new THREE.BufferGeometry();
+    const geo = new BufferGeometry();
     const pos = new Float32Array(STAR_COUNT * 3);
-    geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-    geo.setAttribute("color", new THREE.Float32BufferAttribute(starData.colors, 3));
+    geo.setAttribute("position", new Float32BufferAttribute(pos, 3));
+    geo.setAttribute("color", new Float32BufferAttribute(starData.colors, 3));
     return geo;
   }, [starData.colors]);
 
   const dustGeo = useMemo(() => {
-    const geo = new THREE.BufferGeometry();
+    const geo = new BufferGeometry();
     const pos = new Float32Array(DUST_COUNT * 3);
-    geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-    geo.setAttribute("color", new THREE.Float32BufferAttribute(dustData.colors, 3));
+    geo.setAttribute("position", new Float32BufferAttribute(pos, 3));
+    geo.setAttribute("color", new Float32BufferAttribute(dustData.colors, 3));
     return geo;
   }, [dustData.colors]);
 
   const starsMat = useMemo(() => {
     if (!starTexture) return null;
-    return new THREE.PointsMaterial({
+    return new PointsMaterial({
       vertexColors: true,
       transparent: true,
       opacity: opacity * 0.9,
       sizeAttenuation: true,
       size: 0.045,
       map: starTexture,
-      blending: THREE.AdditiveBlending,
+      blending: AdditiveBlending,
       depthWrite: false,
     });
   }, [opacity, starTexture]);
 
   const dustMat = useMemo(() => {
     if (!starTexture) return null;
-    return new THREE.PointsMaterial({
+    return new PointsMaterial({
       vertexColors: true,
       transparent: true,
       opacity: opacity * 0.12,
       sizeAttenuation: true,
       size: 0.18,
       map: starTexture,
-      blending: THREE.AdditiveBlending,
+      blending: AdditiveBlending,
       depthWrite: false,
     });
   }, [opacity, starTexture]);
@@ -165,7 +175,7 @@ export function Galaxy({ opacity = 1 }: { opacity?: number }) {
     }
 
     // Update star positions
-    const starPos = starsGeo.attributes.position as THREE.BufferAttribute;
+    const starPos = starsGeo.attributes.position as BufferAttribute;
     const sp = starPos.array as Float32Array;
     for (let i = 0; i < STAR_COUNT; i++) {
       const t = starData.baseT[i] + time * starData.speeds[i];
@@ -178,7 +188,7 @@ export function Galaxy({ opacity = 1 }: { opacity?: number }) {
     starPos.needsUpdate = true;
 
     // Update dust positions
-    const dustPos = dustGeo.attributes.position as THREE.BufferAttribute;
+    const dustPos = dustGeo.attributes.position as BufferAttribute;
     const dp = dustPos.array as Float32Array;
     for (let i = 0; i < DUST_COUNT; i++) {
       const t = dustData.baseT[i] + time * dustData.speeds[i];

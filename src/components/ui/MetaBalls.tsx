@@ -95,7 +95,28 @@ export default function MetaBalls({
     const rgb = hexToRgb(color);
     const cursorRgb = hexToRgb(cursorBallColor);
 
+    // Create temp canvas ONCE, reuse every frame
+    const tempCanvas = document.createElement("canvas");
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+    const tempCtx = tempCanvas.getContext("2d");
+    if (!tempCtx) return;
+    const dpr = Math.min(window.devicePixelRatio, 2);
+    tempCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // Update temp canvas size on resize
+    const origResize = resize;
+    const resizeWithTemp = () => {
+      origResize();
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      tempCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    window.removeEventListener("resize", resize);
+    window.addEventListener("resize", resizeWithTemp);
+
     const animate = () => {
+      if (document.hidden) { animFrameRef.current = requestAnimationFrame(animate); return; }
       ctx.clearRect(0, 0, width, height);
 
       // Smooth mouse
@@ -126,15 +147,8 @@ export default function MetaBalls({
         ball.vy *= 0.999;
       }
 
-      // Draw metaballs using radial gradients & composite
-      const tempCanvas = document.createElement("canvas");
-      tempCanvas.width = canvas.width;
-      tempCanvas.height = canvas.height;
-      const tempCtx = tempCanvas.getContext("2d");
-      if (!tempCtx) return;
-
-      const dpr = Math.min(window.devicePixelRatio, 2);
-      tempCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // Clear temp canvas for this frame
+      tempCtx.clearRect(0, 0, width, height);
 
       // Draw each ball as radial gradient
       for (const ball of balls) {
@@ -226,7 +240,7 @@ export default function MetaBalls({
 
     return () => {
       cancelAnimationFrame(animFrameRef.current);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", resizeWithTemp);
     };
   }, [
     color,

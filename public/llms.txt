@@ -1,0 +1,68 @@
+# Origin Studios
+
+> Strategy-first web studio building custom websites, SaaS platforms, and brand experiences with motion design, 3D, and AI search visibility (GEO/AEO). Zero templates. One compounding system.
+> License: RSL 1.0
+> Source: https://originstudios.dev/llms.txt
+> Updated: 2026-04-08
+
+## About
+
+Origin Studios is a strategy-first web studio founded by Piyush. We build custom websites, SaaS platforms, and brand experiences from scratch using Next.js, Three.js 3D, motion design (GSAP, Lottie), and custom CMS architecture. Every project includes Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO) to ensure AI search visibility. We deliver in 8 weeks through 5 sprints with a 95+ Lighthouse score.
+
+## Services
+
+- **Startup Websites**: Custom-engineered landing pages, investor decks, product showcases, and launch sites built in Next.js. Optimised for conversion and AI search visibility.
+- **SaaS Platforms**: Full-stack web applications with authentication flows, billing integration, and user dashboards. Built on Next.js with custom CMS architecture.
+- **Brand Experiences**: Three.js 3D scenes, GSAP scroll animations, Lottie micro-interactions, and WebGL shaders — all performance-optimised and included as standard.
+- **AI-Visible Systems (GEO/AEO)**: Generative Engine Optimization strategy, JSON-LD structured data implementation, entity mapping, and AI search monitoring to ensure citation by ChatGPT, Perplexity, and Google AI Overviews.
+- **Growth Infrastructure**: Custom CMS, Google Analytics 4, Google Tag Manager, Meta Pixel with Conversions API, email automation, and CRM integration built into the site during construction.
+
+## Pricing
+
+| Tier | Price | Includes |
+|------|-------|----------|
+| Foundation | Starting from INR 75,000 | Custom design and development. 5-8 pages, sub-1s load, custom CMS, handover docs. |
+| Growth | Starting from INR 1,50,000 | Full discovery and strategy. AEO implementation, motion design, marketing integration, ongoing support. |
+| Authority | Starting from INR 4,00,000 | Full GEO stack, Three.js 3D scenes, AI visibility tracking, CRO, custom CMS, dedicated support. |
+
+## Process
+
+Five-sprint, eight-week delivery:
+
+1. **Understand** (Weeks 1-2): Deep-dive into your business, market, and users. We interview, audit competitors, and define the strategic direction.
+2. **Prototype** (Weeks 3-4): High-fidelity Figma prototypes with real copy, motion specs, and interaction flows.
+3. **Engineer** (Weeks 5-6): Pixel-perfect code in Next.js. Custom CMS, 3D scenes, scroll animations, marketing integrations.
+4. **Optimise** (Week 7): Performance tuning, structured data, AI search visibility, accessibility audit.
+5. **Ship** (Week 8): Final QA, staging review, DNS cutover, monitoring setup. Launch with 95+ Lighthouse score.
+
+## Technology Stack
+
+- **Framework**: Next.js / Astro
+- **3D & Motion**: Three.js, GSAP, Lottie
+- **Structured Data**: Full JSON-LD suite (ProfessionalService, FAQPage, WebSite, WebPage, Service)
+- **Hosting**: Vercel Edge (Global CDN, auto-scaling)
+- **Analytics**: GA4, GTM, Meta Pixel with Conversions API
+- **CMS**: Custom-built per project
+
+## What is GEO?
+
+Generative Engine Optimization (GEO) is the practice of optimizing your website and content to be cited by AI search engines like ChatGPT, Perplexity, and Google AI Overviews. Unlike traditional SEO which focuses on ranking in search results, GEO focuses on being the authoritative source that AI systems reference when answering user queries.
+
+## What is AEO?
+
+Answer Engine Optimization (AEO) focuses on structuring content so AI engines can extract clear, citable answers. This includes JSON-LD structured data, entity mapping, knowledge graph optimization, and content formatted for passage-level extraction.
+
+## Blog (Intelligence)
+
+- [What Is Generative Engine Optimization (GEO) and Why Your Website Needs It in 2026](https://originstudios.dev/blog/what-is-generative-engine-optimization) — Comprehensive guide covering GEO vs SEO, implementation layers, AEO, and a prioritised action plan.
+
+## Case Studies
+
+- [Building Our Own GEO-Optimised Web Presence from Scratch](https://originstudios.dev/work/origin-studios-website) — How we applied our five-sprint methodology to build originstudios.dev with 95+ Lighthouse, 74/100 GEO score, and 5 JSON-LD schema types.
+
+## Contact
+
+- Email: talk@originstudios.dev
+- Website: https://originstudios.dev
+- Blog: https://originstudios.dev/blog
+- Work: https://originstudios.dev/work

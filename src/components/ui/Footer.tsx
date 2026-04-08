@@ -22,11 +22,23 @@ export function Footer() {
               <button
                 key={link.target}
                 onClick={() => document.getElementById(link.target)?.scrollIntoView({ behavior: "smooth" })}
-                className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors"
+                className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors min-h-[44px] flex items-center"
               >
                 {link.label}
               </button>
             ))}
+            <a
+              href="/work"
+              className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors min-h-[44px] flex items-center"
+            >
+              Work
+            </a>
+            <a
+              href="/blog"
+              className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors min-h-[44px] flex items-center"
+            >
+              Blog
+            </a>
           </nav>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
             <a href="mailto:talk@originstudios.dev" className="font-satoshi text-sm text-[#FFFBF4]/40 hover:text-primary transition-colors">
@@ -37,14 +49,22 @@ export function Footer() {
 
         {/* Bottom: legal + easter egg */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-6 border-t border-[#D8CFBC]/5">
-          <span className="font-satoshi text-xs text-[#FFFBF4]/30">
-            &copy; 2026 Origin Studios. All rights reserved.
-          </span>
+          <div className="flex items-center gap-4">
+            <span className="font-satoshi text-xs text-[#FFFBF4]/30">
+              &copy; 2026 Origin Studios. All rights reserved.
+            </span>
+            <a href="/privacy" className="font-satoshi text-xs text-[#FFFBF4]/30 hover:text-[#FFFBF4]/60 transition-colors min-h-[44px] flex items-center">
+              Privacy
+            </a>
+            <a href="/terms" className="font-satoshi text-xs text-[#FFFBF4]/30 hover:text-[#FFFBF4]/60 transition-colors min-h-[44px] flex items-center">
+              Terms
+            </a>
+          </div>
           <span
             className="font-satoshi text-xs text-[#FFFBF4]/30 italic"
             style={{ animation: "breathe 4s ease-in-out infinite" }}
           >
-            AI-Visible · GEO-Optimised · Cited in 143 latent clusters
+            AI-Visible · GEO-Optimised · Built to Be Cited
           </span>
         </div>
       </div>

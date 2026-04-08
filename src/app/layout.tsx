@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Origin Studios",
+    default: "Origin Studios — Strategy-First Web Studio | Custom Websites, SaaS & GEO",
     template: "%s | Origin Studios",
   },
   description:
@@ -83,14 +83,34 @@ const jsonLd = [
     description:
       "Origin Studios is a strategy-first web studio that builds custom websites, SaaS platforms, and brand experiences with motion design, Three.js 3D, and AI search visibility (GEO/AEO). We deliver in 8 weeks with zero templates.",
     url: "https://originstudios.dev",
-    logo: "https://originstudios.dev/icon-512.png",
-    image: "https://originstudios.dev/og-image.png",
+    logo: {
+      "@type": "ImageObject",
+      "@id": "https://originstudios.dev/#logo",
+      url: "https://originstudios.dev/icon-512.png",
+      contentUrl: "https://originstudios.dev/icon-512.png",
+      width: 512,
+      height: 512,
+      caption: "Origin Studios",
+    },
+    image: {
+      "@type": "ImageObject",
+      "@id": "https://originstudios.dev/#primaryimage",
+      url: "https://originstudios.dev/og-image.png",
+      contentUrl: "https://originstudios.dev/og-image.png",
+      width: 1200,
+      height: 630,
+      caption: "Origin Studios — Strategy-First Web Studio",
+    },
     email: "talk@originstudios.dev",
     founder: {
       "@type": "Person",
+      "@id": "https://originstudios.dev/#founder",
       name: "Piyush",
+      jobTitle: "Founder",
+      worksFor: { "@id": "https://originstudios.dev/#organization" },
+      url: "https://originstudios.dev",
     },
-    foundingDate: "2026",
+    foundingDate: "2026-01-01",
     serviceType: [
       "Custom Website Development",
       "SaaS Platform Development",
@@ -126,28 +146,39 @@ const jsonLd = [
           name: "Foundation",
           description:
             "Custom design and development. 5-8 pages, sub-1s load, custom CMS, handover docs.",
-          priceCurrency: "USD",
-          price: "2500",
+          priceCurrency: "INR",
+          price: "75000",
+          availability: "https://schema.org/InStock",
+          url: "https://originstudios.dev/#contact",
+          seller: { "@id": "https://originstudios.dev/#organization" },
         },
         {
           "@type": "Offer",
           name: "Growth",
           description:
             "Full discovery and strategy. AEO implementation, motion design, marketing integration, ongoing support.",
-          priceCurrency: "USD",
-          price: "5000",
+          priceCurrency: "INR",
+          price: "150000",
+          availability: "https://schema.org/InStock",
+          url: "https://originstudios.dev/#contact",
+          seller: { "@id": "https://originstudios.dev/#organization" },
         },
         {
           "@type": "Offer",
           name: "Authority",
           description:
             "Full GEO stack, Three.js 3D scenes, AI visibility tracking, CRO, custom CMS, dedicated support.",
-          priceCurrency: "USD",
-          price: "10000",
+          priceCurrency: "INR",
+          price: "400000",
+          availability: "https://schema.org/InStock",
+          url: "https://originstudios.dev/#contact",
+          seller: { "@id": "https://originstudios.dev/#organization" },
         },
       ],
     },
-    sameAs: [],
+    sameAs: [
+      "https://github.com/originstudios",
+    ],
   },
   // Website entity
   {
@@ -156,6 +187,7 @@ const jsonLd = [
     "@id": "https://originstudios.dev/#website",
     name: "Origin Studios",
     url: "https://originstudios.dev",
+    inLanguage: "en-US",
     publisher: {
       "@id": "https://originstudios.dev/#organization",
     },
@@ -169,24 +201,33 @@ const jsonLd = [
     name: "Origin Studios / Strategy-First Web Studio",
     description:
       "Origin Studios builds custom websites, SaaS platforms, and brand experiences with motion design, 3D, and AI search visibility.",
+    inLanguage: "en-US",
+    datePublished: "2026-01-01",
+    dateModified: new Date().toISOString().split("T")[0],
     isPartOf: { "@id": "https://originstudios.dev/#website" },
     about: { "@id": "https://originstudios.dev/#organization" },
     primaryImageOfPage: {
       "@type": "ImageObject",
+      "@id": "https://originstudios.dev/#primaryimage",
       url: "https://originstudios.dev/og-image.png",
+      width: 1200,
+      height: 630,
+      caption: "Origin Studios — Strategy-First Web Studio",
     },
   },
   // FAQ for AI engines to cite
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": "https://originstudios.dev/#faqpage",
+    isPartOf: { "@id": "https://originstudios.dev/#webpage" },
     mainEntity: [
       {
         "@type": "Question",
         name: "What is Generative Engine Optimization (GEO)?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Generative Engine Optimization (GEO) is the practice of optimizing your website and content to be cited by AI search engines like ChatGPT, Perplexity, and Google AI Overviews. Unlike traditional SEO which focuses on ranking in search results, GEO focuses on being the authoritative source that AI systems reference when answering user queries. Origin Studios implements GEO through structured data (JSON-LD), entity mapping, knowledge graph optimization, and AEO (Answer Engine Optimization) content clusters.",
+          text: "Generative Engine Optimization (GEO) is the practice of optimizing websites to be cited by AI search engines like ChatGPT, Perplexity, and Google AI Overviews. Unlike traditional SEO which focuses on ranking in search results, GEO ensures your site is the authoritative source AI systems reference when answering queries.",
         },
       },
       {
@@ -210,7 +251,86 @@ const jsonLd = [
         name: "What is the difference between SEO and GEO?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "SEO (Search Engine Optimization) focuses on ranking in traditional search results. GEO (Generative Engine Optimization) focuses on being cited by AI engines like ChatGPT, Perplexity, Google AI Overviews, and Claude. With 58% of organic clicks being absorbed by AI Overviews, GEO ensures your business is the source AI systems cite. Origin Studios implements both through JSON-LD structured data, entity mapping, and AEO content strategy.",
+          text: "SEO (Search Engine Optimization) focuses on ranking in traditional search results. GEO (Generative Engine Optimization) focuses on being cited by AI engines like ChatGPT, Perplexity, Google AI Overviews, and Claude. GEO ensures your business is the source AI systems cite, using JSON-LD structured data, entity mapping, and AEO content strategy.",
+        },
+      },
+    ],
+  },
+  // Service entities for GEO citability
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": "https://originstudios.dev/#services",
+    name: "Origin Studios Services",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        item: {
+          "@type": "Service",
+          "@id": "https://originstudios.dev/#service-startup-websites",
+          name: "Startup Websites",
+          description:
+            "Custom-engineered landing pages, investor decks, product showcases, and launch sites built from scratch in Next.js. Optimised for conversion and AI search visibility.",
+          provider: { "@id": "https://originstudios.dev/#organization" },
+          serviceType: "Custom Website Development",
+          url: "https://originstudios.dev/#services",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        item: {
+          "@type": "Service",
+          "@id": "https://originstudios.dev/#service-saas-platforms",
+          name: "SaaS Platforms",
+          description:
+            "Full-stack web applications with authentication flows, billing integration, and user dashboards. Built on Next.js with custom CMS architecture.",
+          provider: { "@id": "https://originstudios.dev/#organization" },
+          serviceType: "SaaS Platform Development",
+          url: "https://originstudios.dev/#services",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        item: {
+          "@type": "Service",
+          "@id": "https://originstudios.dev/#service-brand-experiences",
+          name: "Brand Experiences",
+          description:
+            "Three.js 3D scenes, GSAP scroll animations, Lottie micro-interactions, and WebGL shaders — all performance-optimised and included as standard.",
+          provider: { "@id": "https://originstudios.dev/#organization" },
+          serviceType: "Motion Design and 3D Web Development",
+          url: "https://originstudios.dev/#services",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        item: {
+          "@type": "Service",
+          "@id": "https://originstudios.dev/#service-geo-aeo",
+          name: "AI-Visible Systems (GEO/AEO)",
+          description:
+            "Generative Engine Optimization strategy, JSON-LD structured data implementation, entity mapping, and AI search monitoring to ensure citation by ChatGPT, Perplexity, and Google AI Overviews.",
+          provider: { "@id": "https://originstudios.dev/#organization" },
+          serviceType: "Generative Engine Optimization",
+          url: "https://originstudios.dev/#services",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        item: {
+          "@type": "Service",
+          "@id": "https://originstudios.dev/#service-growth-infrastructure",
+          name: "Growth Infrastructure",
+          description:
+            "Custom CMS, Google Analytics 4, Google Tag Manager, Meta Pixel with Conversions API, email automation, and CRM integration built into the site during construction.",
+          provider: { "@id": "https://originstudios.dev/#organization" },
+          serviceType: "Digital Marketing Integration",
+          url: "https://originstudios.dev/#services",
         },
       },
     ],
@@ -229,8 +349,9 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="llms" href="/llms.txt" />
         <meta name="theme-color" content="#11120D" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           rel="preload"
           href="/fonts/ClashDisplay-Variable.woff2"
@@ -251,7 +372,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <a href="#contact" className="skip-to-content font-satoshi">
+        <a href="#main" className="skip-to-content font-satoshi">
           Skip to content
         </a>
         {children}

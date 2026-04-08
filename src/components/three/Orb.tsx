@@ -2,19 +2,19 @@
 
 import { useRef, useMemo } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import * as THREE from "three";
+import { Mesh, Vector2 } from "three";
 import vertexShader from "@/lib/shaders/orb.vert.glsl";
 import fragmentShader from "@/lib/shaders/orb.frag.glsl";
 
 export function Orb({ opacity = 1 }: { opacity?: number }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const mouse = useRef(new THREE.Vector2(0, 0));
+  const meshRef = useRef<Mesh>(null);
+  const mouse = useRef(new Vector2(0, 0));
   const { viewport } = useThree();
 
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uMouse: { value: new THREE.Vector2(0, 0) },
+      uMouse: { value: new Vector2(0, 0) },
       uOpacity: { value: opacity },
     }),
     []
@@ -28,7 +28,7 @@ export function Orb({ opacity = 1 }: { opacity?: number }) {
 
     // Smooth mouse follow
     mouse.current.lerp(
-      new THREE.Vector2(
+      new Vector2(
         pointer.x * viewport.width * 0.5,
         pointer.y * viewport.height * 0.5
       ),

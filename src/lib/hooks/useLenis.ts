@@ -24,7 +24,7 @@ export function useLenis() {
     lenis.on("scroll", ScrollTrigger.update);
 
     const raf = (time: number) => {
-      lenis.raf(time);
+      if (!document.hidden) lenis.raf(time);
       requestAnimationFrame(raf);
     };
     requestAnimationFrame(raf);

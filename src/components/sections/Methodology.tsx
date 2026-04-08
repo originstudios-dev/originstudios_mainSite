@@ -117,8 +117,9 @@ export function Methodology() {
 
                 {/* Title crossfades to description on hover */}
                 <span className="flex-1 relative">
+                  {/* Desktop: crossfade title→description on hover */}
                   <span
-                    className="font-clash text-xl md:text-3xl font-bold uppercase tracking-tight transition-all duration-300 inline-block"
+                    className="hidden md:inline-block font-clash text-xl md:text-3xl font-bold uppercase tracking-tight transition-all duration-300"
                     style={{
                       opacity: isHovered ? 0 : 1,
                       transform: isHovered ? "translateY(-10px)" : "translateY(0)",
@@ -128,7 +129,7 @@ export function Methodology() {
                     {step.title}
                   </span>
                   <span
-                    className="absolute inset-0 font-satoshi text-sm md:text-base flex items-center transition-all duration-300"
+                    className="hidden md:flex absolute inset-0 font-satoshi text-sm md:text-base items-center transition-all duration-300"
                     style={{
                       opacity: isHovered ? 1 : 0,
                       transform: isHovered ? "translateY(0)" : "translateY(10px)",
@@ -137,8 +138,18 @@ export function Methodology() {
                   >
                     {step.description}
                   </span>
+                  {/* Mobile: always show title + description stacked */}
+                  <span className="md:hidden flex flex-col gap-1">
+                    <span className="font-clash text-xl font-bold uppercase tracking-tight text-[#FFFBF4]">
+                      {step.title}
+                    </span>
+                    <span className="font-satoshi text-xs text-[#FFFBF4]/70 leading-relaxed">
+                      {step.description}
+                    </span>
+                  </span>
                 </span>
 
+                {/* Desktop: detail on hover */}
                 <span
                   className="hidden md:block font-satoshi text-xs tracking-wide text-right max-w-[200px] transition-all duration-300"
                   style={{
@@ -147,6 +158,10 @@ export function Methodology() {
                     transform: isHovered ? "translateX(0)" : "translateX(20px)",
                   }}
                 >
+                  {step.detail}
+                </span>
+                {/* Mobile: always show detail */}
+                <span className="md:hidden font-satoshi text-xs tracking-wide text-[#FFFBF4]/60">
                   {step.detail}
                 </span>
               </div>

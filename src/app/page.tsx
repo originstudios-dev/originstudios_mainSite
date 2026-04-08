@@ -94,8 +94,14 @@ export default function Home() {
   return (
     <>
       <Loader onComplete={onLoadComplete} />
-      {loaded && (
-        <>
+      {/* Content is always in DOM for crawlers/SSR — CSS controls visibility until loader finishes */}
+      <div
+        style={{
+          visibility: loaded ? "visible" : "hidden",
+          opacity: loaded ? 1 : 0,
+          transition: "opacity 0.3s ease-out",
+        }}
+      >
           {/* Ambient layers */}
           <CustomCursor />
           <Particles />
@@ -104,7 +110,7 @@ export default function Home() {
           <ContactIsland />
 
           <Navbar />
-          <main className="text-primary">
+          <main id="main" className="text-primary">
             <Hero />
 
             {/* Solid bg from here */}
@@ -204,8 +210,7 @@ export default function Home() {
           </main>
           <Footer />
           <BigLogo />
-        </>
-      )}
+      </div>
     </>
   );
 }

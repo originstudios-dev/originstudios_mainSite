@@ -51,8 +51,8 @@ function wordSpans(text: string) {
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const headline1Ref = useRef<HTMLHeadingElement>(null);
-  const headline2Ref = useRef<HTMLHeadingElement>(null);
+  const headline1Ref = useRef<HTMLSpanElement>(null);
+  const headline2Ref = useRef<HTMLSpanElement>(null);
   const subHeadRef = useRef<HTMLParagraphElement>(null);
   const tier = useDeviceCapability();
 
@@ -180,14 +180,14 @@ export function Hero() {
         </p>
 
         {/* Headline */}
-        <div className="flex flex-col">
-          <h1
+        <h1 className="flex flex-col">
+          <span
             ref={headline1Ref}
             className="font-clash text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[0.95]"
           >
             {charSpans("We Don\u2019t Just Build", "char-l1")}
-          </h1>
-          <h1 className="font-clash text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[0.95]">
+          </span>
+          <span className="font-clash text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[0.95]">
             <span
               className="inline-block transition-all duration-300"
               style={{
@@ -198,15 +198,15 @@ export function Hero() {
               {rotatingWord}
             </span>
             {charSpans(".", "char-l1")}
-          </h1>
-          <h1
+          </span>
+          <span
             ref={headline2Ref}
             className="font-clash text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[0.95]"
             style={{ color: "#565449" }}
           >
             {charSpans("We Build the System They Run On.", "char-l2")}
-          </h1>
-        </div>
+          </span>
+        </h1>
 
         {/* Sub-headline */}
         <p

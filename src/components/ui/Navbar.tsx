@@ -239,7 +239,7 @@ export function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 relative z-[101]"
+            className="md:hidden flex flex-col justify-center items-center w-11 h-11 gap-1.5 relative z-[101]"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             onClick={() => setMobileOpen((o) => !o)}
           >

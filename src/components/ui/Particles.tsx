@@ -49,6 +49,7 @@ export function Particles() {
     let time = 0;
 
     const draw = () => {
+      if (document.hidden) { raf = requestAnimationFrame(draw); return; }
       ctx.clearRect(0, 0, w, h);
       time++;
 

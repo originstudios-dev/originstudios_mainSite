@@ -172,9 +172,9 @@ export function Comparison() {
                 }}
               />
 
-              {/* ── Gap tooltip ── */}
+              {/* ── Gap tooltip: hover on desktop, always visible on mobile ── */}
               <div
-                className="pointer-events-none absolute left-1/2 -translate-x-1/2 -bottom-1 z-20 transition-all duration-300"
+                className="pointer-events-none absolute left-1/2 -translate-x-1/2 -bottom-1 z-20 hidden md:block transition-all duration-300"
                 style={{
                   opacity: isHovered ? 1 : 0,
                   transform: isHovered
@@ -183,6 +183,12 @@ export function Comparison() {
                 }}
               >
                 <span className="inline-block font-satoshi text-xs tracking-wide text-[#FFFBF4]/60 bg-[#D8CFBC]/[0.06] backdrop-blur-sm border border-[#D8CFBC]/10 rounded-full px-4 py-1.5 whitespace-nowrap">
+                  {row.gap}
+                </span>
+              </div>
+              {/* Mobile: always visible gap */}
+              <div className="md:hidden absolute left-1/2 -translate-x-1/2 -bottom-1 z-20 pointer-events-none">
+                <span className="inline-block font-satoshi text-xs tracking-wide text-[#FFFBF4]/60 whitespace-nowrap">
                   {row.gap}
                 </span>
               </div>

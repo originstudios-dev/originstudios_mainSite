@@ -12,6 +12,9 @@ export function CustomCursor() {
     const dot = dotRef.current;
     if (!dot) return;
 
+    // Don't run on mobile/touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     const onMove = (e: MouseEvent) => {
       mx.current = e.clientX;
       my.current = e.clientY;
