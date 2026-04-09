@@ -149,7 +149,9 @@ export default function Home() {
                   }
                   revealed={
                     <p className="font-clash text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#11120D] leading-snug">
-                      Your agency uses WordPress and calls it &ldquo;custom.&rdquo; We write every line from scratch and call it Tuesday. Origin Studios go brr.
+                      Your agency uses WordPress and calls it &ldquo;custom.&rdquo; We write every line from scratch and call it Tuesday.
+                      <br />
+                      <span className="mt-2 inline-block">Origin Studios go brr.</span>
                     </p>
                   }
                 />

@@ -145,41 +145,46 @@ function MobileReveal({
   const clipRadius = isOpen ? "120%" : "0%";
 
   return (
-    <div ref={sectionRef} className={`relative overflow-hidden ${className}`}>
-      {/* Base text — always rendered */}
-      <div
-        style={{
-          transition: "opacity 0.6s ease",
-          opacity: isOpen ? 0.3 : 1,
-        }}
-      >
-        {base}
-      </div>
-
-      {/* Revealed text — clip-path circle expands from center */}
-      <div
-        className="absolute inset-0 flex items-center justify-center rounded-2xl"
-        style={{
-          background: revealBg,
-          clipPath: `circle(${clipRadius} at 50% 50%)`,
-          transition: "clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
-          padding: "1.5rem",
-        }}
-      >
+    <div ref={sectionRef} className={`relative ${className}`}>
+      {/* Grid overlay: both texts occupy the same cell so container sizes to the taller one */}
+      <div className="grid" style={{ gridTemplateAreas: "'stack'" }}>
+        {/* Base text — always in flow */}
         <div
           style={{
-            transition: "opacity 0.4s ease 0.2s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s",
-            opacity: isOpen ? 1 : 0,
-            transform: isOpen ? "scale(1)" : "scale(0.95)",
+            gridArea: "stack",
+            transition: "opacity 0.6s ease",
+            opacity: isOpen ? 0 : 1,
           }}
         >
-          {revealed}
+          {base}
+        </div>
+
+        {/* Revealed text — same grid cell, clip-path circle expands from center */}
+        <div
+          className="rounded-2xl flex items-center justify-center"
+          style={{
+            gridArea: "stack",
+            background: revealBg,
+            clipPath: `circle(${clipRadius} at 50% 50%)`,
+            transition: "clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+            padding: "1.5rem",
+          }}
+        >
+          <div
+            style={{
+              transition: "opacity 0.4s ease 0.2s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s",
+              opacity: isOpen ? 1 : 0,
+              transform: isOpen ? "scale(1)" : "scale(0.95)",
+            }}
+          >
+            {revealed}
+          </div>
         </div>
       </div>
 
       {/* Subtle hint line that pulses before reveal */}
       <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2"
+        className="mx-auto mt-4"
         style={{
           width: phase === "hidden" ? 24 : 0,
           height: 2,
